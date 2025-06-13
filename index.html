@@ -169,6 +169,13 @@
             height: 1.25rem;
             margin-top: 0.125rem;
         }
+        
+        /* Normaliza o tamanho dos inputs para consistência */
+        input[type="text"],
+        input[type="email"],
+        input[type="date"] {
+          box-sizing: border-box; /* Garante que padding e borda sejam incluídos na largura total */
+        }
     </style>
 </head>
 <body class="bg-stone-200 text-stone-800">
