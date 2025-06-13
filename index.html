@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SLAP | Teste de Nível</title>
+    <title>SLAP | Teste de Nível de Inglês</title>
     <!-- Favicon da SLAP -->
     <link rel="icon" type="image/png" href="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749543469/SLAP_FAVICON_AMARELO_coilvj.png">
     
@@ -173,6 +173,7 @@
         /* Normaliza o tamanho dos inputs para consistência */
         input[type="text"],
         input[type="email"],
+        input[type="tel"],
         input[type="date"] {
           box-sizing: border-box; /* Garante que padding e borda sejam incluídos na largura total */
         }
@@ -202,6 +203,10 @@
                         <div>
                             <label for="email" class="font-semibold text-stone-800 block mb-1">Seu melhor E-mail</label>
                             <input type="email" id="email" name="email" class="w-full px-4 py-2 bg-yellow-50 border-2 border-transparent rounded-lg focus:outline-none focus:border-stone-800 text-stone-900 placeholder-stone-500" required>
+                        </div>
+                        <div>
+                            <label for="whatsapp" class="font-semibold text-stone-800 block mb-1">WhatsApp (com DDD)</label>
+                            <input type="tel" id="whatsapp" name="whatsapp" class="w-full px-4 py-2 bg-yellow-50 border-2 border-transparent rounded-lg focus:outline-none focus:border-stone-800 text-stone-900 placeholder-stone-500" placeholder="(XX) XXXXX-XXXX" required>
                         </div>
                         <div class="text-center pt-4">
                             <button id="submit-lead-btn" type="submit" class="action-button w-full sm:w-auto justify-center bg-stone-800 text-white hover:bg-stone-900">
@@ -299,6 +304,7 @@
         let studentName = '';
         let studentDob = '';
         let studentEmail = '';
+        let studentWhatsapp = '';
 
         // --- DADOS DO QUIZ ---
         const allQuestions = [
@@ -351,6 +357,7 @@
             studentName = document.getElementById('name').value;
             studentDob = document.getElementById('dob').value;
             studentEmail = document.getElementById('email').value;
+            studentWhatsapp = document.getElementById('whatsapp').value;
 
             // Esconde o formulário e começa o quiz
             formView.classList.add('hidden');
@@ -519,6 +526,7 @@
             submissionData.append('Nome', studentName);
             submissionData.append('Data de Nascimento', studentDob);
             submissionData.append('Email', studentEmail);
+            submissionData.append('WhatsApp', studentWhatsapp);
             submissionData.append('Pontuação', `${score} de ${total}`);
             submissionData.append('Nível Estimado', level);
 
