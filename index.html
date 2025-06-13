@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SLAP | Teste de Nível</title>
+    <title>SLAP | Teste de Nível de Inglês</title>
     <!-- Favicon da SLAP -->
     <link rel="icon" type="image/png" href="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749543469/SLAP_FAVICON_AMARELO_coilvj.png">
     
@@ -17,8 +17,19 @@
     
     <style>
         /* Aplicando a fonte padrão e cores do Hub Pedagógico */
+        html, body {
+            height: 100%;
+        }
         body {
             font-family: 'DM Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+        #app-container {
+            flex: 1 0 auto;
+        }
+        main {
+            flex-shrink: 0;
         }
 
         /* Estilos do Quiz reutilizados do Hub */
@@ -160,80 +171,107 @@
         }
     </style>
 </head>
-<body class="bg-stone-200 text-stone-800 flex flex-col items-center justify-center min-h-screen p-4 sm:p-6">
+<body class="bg-stone-200 text-stone-800">
 
-    <div id="app-container" class="w-full max-w-2xl mx-auto">
+    <main id="app-container" class="flex items-center justify-center p-4 sm:p-6">
+        <div class="w-full max-w-2xl mx-auto">
         
-        <!-- Passo 1: Formulário de Inscrição (VISÍVEL POR PADRÃO) -->
-        <div id="form-view">
-            <div class="bg-[#F1D24B] text-stone-800 p-8 rounded-xl shadow-2xl text-center">
-                <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-24 h-auto mx-auto mb-4 rounded-lg">
-                <h1 class="text-3xl font-bold text-stone-900">Teste de Nível</h1>
-                <p class="text-stone-700 mt-2 mb-6">Comece sua jornada no SLAP! Preencha seus dados para iniciar o teste e descobrir seu nível.</p>
-                <form id="lead-form" action="https://formspree.io/f/mblyowaq" method="POST" class="text-left space-y-4 max-w-md mx-auto">
-                    <div>
-                        <label for="name" class="font-semibold text-stone-800 block mb-1">Nome Completo</label>
-                        <input type="text" id="name" name="name" class="w-full px-4 py-2 bg-yellow-50 border-2 border-transparent rounded-lg focus:outline-none focus:border-stone-800 text-stone-900 placeholder-stone-500" required>
+            <!-- Passo 1: Formulário de Inscrição (VISÍVEL POR PADRÃO) -->
+            <div id="form-view">
+                <div class="bg-[#F1D24B] text-stone-800 p-8 rounded-xl shadow-2xl text-center">
+                    <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-24 h-auto mx-auto mb-4 rounded-lg">
+                    <h1 class="text-3xl font-bold text-stone-900">Teste de Nível de Inglês</h1>
+                    <p class="text-stone-700 mt-2 mb-6">Comece sua jornada no SLAP! Preencha seus dados para iniciar o teste e descobrir seu nível.</p>
+                    <form id="lead-form" action="https://formspree.io/f/mblyowaq" method="POST" class="text-left space-y-4 max-w-md mx-auto">
+                        <div>
+                            <label for="name" class="font-semibold text-stone-800 block mb-1">Nome Completo</label>
+                            <input type="text" id="name" name="name" class="w-full px-4 py-2 bg-yellow-50 border-2 border-transparent rounded-lg focus:outline-none focus:border-stone-800 text-stone-900 placeholder-stone-500" required>
+                        </div>
+                        <div>
+                            <label for="dob" class="font-semibold text-stone-800 block mb-1">Data de Nascimento</label>
+                            <input type="date" id="dob" name="dob" class="w-full px-4 py-2 bg-yellow-50 border-2 border-transparent rounded-lg focus:outline-none focus:border-stone-800 text-stone-900 placeholder-stone-500" required>
+                        </div>
+                        <div>
+                            <label for="email" class="font-semibold text-stone-800 block mb-1">Seu melhor E-mail</label>
+                            <input type="email" id="email" name="email" class="w-full px-4 py-2 bg-yellow-50 border-2 border-transparent rounded-lg focus:outline-none focus:border-stone-800 text-stone-900 placeholder-stone-500" required>
+                        </div>
+                        <div class="text-center pt-4">
+                            <button id="submit-lead-btn" type="submit" class="action-button w-full sm:w-auto justify-center bg-stone-800 text-white hover:bg-stone-900">
+                                Começar o Teste
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Passo 2: O Quiz (ESCONDIDO) -->
+            <div id="quiz-view" class="hidden">
+                 <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl border border-stone-300 w-full">
+                    <!-- Conteúdo do quiz será injetado aqui pelo JS -->
+                 </div>
+            </div>
+
+            <!-- Passo 3: Resultado (ESCONDIDO) -->
+            <div id="result-view" class="hidden">
+                <div class="bg-white p-8 rounded-xl shadow-2xl border border-stone-300 text-center">
+                    <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-24 h-auto mx-auto mb-6 rounded-lg">
+                    <h2 class="text-2xl font-bold mb-2 text-stone-800">Teste Finalizado!</h2>
+                    <p id="result-score" class="text-lg text-stone-600 mb-4"></p>
+                    <div class="my-6">
+                        <p id="result-level" class="text-3xl font-bold text-[#84C7DF] mb-2"></p>
+                        <p id="result-message" class="text-stone-700"></p>
                     </div>
-                    <div>
-                        <label for="dob" class="font-semibold text-stone-800 block mb-1">Data de Nascimento</label>
-                        <input type="date" id="dob" name="dob" class="w-full px-4 py-2 bg-yellow-50 border-2 border-transparent rounded-lg focus:outline-none focus:border-stone-800 text-stone-900 placeholder-stone-500" required>
+
+                    <!-- Caixa de Aviso -->
+                    <div class="disclaimer-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                        </svg>
+                        <div>
+                            <strong>Atenção:</strong> Este teste é uma prévia do seu conhecimento gramatical e de vocabulário. Para ingressar no SLAP, é necessário um <strong>teste oral</strong> para avaliar sua fluência e comunicação.
+                        </div>
                     </div>
-                    <div>
-                        <label for="email" class="font-semibold text-stone-800 block mb-1">Seu melhor E-mail</label>
-                        <input type="email" id="email" name="email" class="w-full px-4 py-2 bg-yellow-50 border-2 border-transparent rounded-lg focus:outline-none focus:border-stone-800 text-stone-900 placeholder-stone-500" required>
+
+                    <!-- Botão CTA -->
+                    <div class="text-center mt-8">
+                         <a href="https://wa.me/message/VJROWLFO5Z5KF1" target="_blank" class="action-button text-lg px-8 py-3">
+                             Quero ser aluno SLAP!
+                         </a>
                     </div>
-                    <div class="text-center pt-4">
-                        <button id="submit-lead-btn" type="submit" class="action-button w-full sm:w-auto justify-center bg-stone-800 text-white hover:bg-stone-900">
-                            Começar o Teste
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-                        </button>
-                    </div>
-                </form>
+
+                </div>
             </div>
         </div>
-
-        <!-- Passo 2: O Quiz (ESCONDIDO) -->
-        <div id="quiz-view" class="hidden">
-             <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl border border-stone-300 w-full">
-                <!-- Conteúdo do quiz será injetado aqui pelo JS -->
-             </div>
-        </div>
-
-        <!-- Passo 3: Resultado (ESCONDIDO) -->
-        <div id="result-view" class="hidden">
-            <div class="bg-white p-8 rounded-xl shadow-2xl border border-stone-300 text-center">
-                <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-24 h-auto mx-auto mb-6 rounded-lg">
-                <h2 class="text-2xl font-bold mb-2 text-stone-800">Teste Finalizado!</h2>
-                <p id="result-score" class="text-lg text-stone-600 mb-4"></p>
-                <div class="my-6">
-                    <p id="result-level" class="text-3xl font-bold text-[#84C7DF] mb-2"></p>
-                    <p id="result-message" class="text-stone-700"></p>
-                </div>
-
-                <!-- Caixa de Aviso -->
-                <div class="disclaimer-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
-                    </svg>
-                    <div>
-                        <strong>Atenção:</strong> Este teste é uma prévia do seu conhecimento gramatical e de vocabulário. Para ingressar no SLAP, é necessário um <strong>teste oral</strong> para avaliar sua fluência e comunicação.
-                    </div>
-                </div>
-
-                <!-- Botão CTA -->
-                <div class="text-center mt-8">
-                     <a href="https://wa.me/SEUNUMEROWHATSAPP" target="_blank" class="action-button text-lg px-8 py-3">
-                         Quero ser aluno SLAP!
-                     </a>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    </main>
     
-    <footer class="text-center mt-8 text-stone-500 text-sm">
-        © 2024 SLAP Inglês. Todos os direitos reservados.
+    <footer class="bg-stone-900 text-stone-400 py-6 mt-auto">
+        <div class="container mx-auto px-6 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left">
+            <div class="flex items-center gap-4 mb-4 sm:mb-0">
+                <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749543469/SLAP_FAVICON_AMARELO_coilvj.png" alt="SLAP Mini Logo" class="h-8 w-8">
+                <div class="text-sm">
+                    © 2024 SLAP Inglês.<br>Todos os direitos reservados.
+                </div>
+            </div>
+            <div class="flex gap-6 items-center mb-4 sm:mb-0">
+                <a href="https://www.youtube.com/@slapingles" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2A29 29 0 0 0 23 11.75a29 29 0 0 0-.46-5.33z"></path><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon></svg>
+                </a>
+                <a href="https://www.instagram.com/slapingles" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                </a>
+                <a href="https://www.tiktok.com/@slapingles" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                </a>
+                <!-- Ícone do WhatsApp adicionado -->
+                <a href="https://wa.me/message/VJROWLFO5Z5KF1" target="_blank" rel="noopener noreferrer" class="text-stone-400 hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 2v6h-6M2.5 22v-6h6"/><path d="M4.93 15c1.23 3.4 4.58 5.92 8.57 5.92 4.97 0 9-4.03 9-9s-4.03-9-9-9-9 4.03-9 9c0 .17.01.34.02.5"/></svg>
+                </a>
+            </div>
+             <a href="https://www.slapingles.com" target="_blank" class="action-button bg-stone-200 text-stone-800 hover:bg-white text-sm px-4 py-2">
+                Visite nosso site
+            </a>
+        </div>
     </footer>
 
     <!-- Efeitos Sonoros -->
