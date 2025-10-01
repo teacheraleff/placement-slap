@@ -198,13 +198,14 @@
 <body class="bg-stone-200 text-stone-800">
 
     <main id="app-container" class="flex items-center justify-center p-4 sm:p-6 min-h-screen">
-        <div class="w-full max-w-2xl mx-auto">
+        <!-- Contêiner principal com largura adaptável para desktop -->
+        <div class="w-full max-w-3xl lg:max-w-5xl mx-auto">
         
             <!-- SPLASH SCREEN 1: READY QUESTION (Default View on Load) -->
             <div id="splash-1-view" class="dark-splash max-w-2xl mx-auto bg-stone-900 shadow-none">
                 <!-- Ícone Original (Fundo Amarelo) - rounded-lg ATIVO -->
-                <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-32 h-auto mx-auto mb-8 rounded-lg">
-                <h1 class="text-4xl sm:text-5xl font-bold text-[#F1D24B] mb-10">
+                <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-32 h-auto mx-auto mb-6 sm:mb-8 rounded-lg">
+                <h1 class="text-4xl sm:text-5xl font-bold text-[#F1D24B] mb-6 sm:mb-8">
                     Pronto para descobrir o seu nível de inglês?
                 </h1>
                 <button class="action-button bg-[#F1D24B] text-stone-900 text-xl px-12 py-4" onclick="goToSplash2()">
@@ -215,8 +216,8 @@
             <!-- SPLASH SCREEN 2: DISCLAIMER -->
             <div id="splash-2-view" class="dark-splash max-w-2xl mx-auto bg-stone-900 hidden shadow-none">
                  <!-- Ícone BRANCO (Fundo Escuro) - rounded-lg REMOVIDO -->
-                 <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1759294959/SLAP_TIPO_BRANCO_uvynbr.png" alt="SLAP Logo Branco" class="w-28 h-auto mx-auto mb-6 opacity-80">
-                <p class="text-xl sm:text-2xl font-light leading-relaxed mb-10 max-w-lg">
+                 <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1759294959/SLAP_TIPO_BRANCO_uvynbr.png" alt="SLAP Logo Branco" class="w-32 h-auto mx-auto mb-4 sm:mb-6 opacity-80">
+                <p class="text-xl sm:text-2xl font-light leading-relaxed mb-6 sm:mb-8 max-w-lg">
                     Antes de mais nada, a gente do SLAP queria te dizer que este teste não é uma garantia do seu nível, hein? 👀 É apenas um teste rápido!
                     <br><br>
                     E ah, quando você clicar no botão de começar o teste, vamos pedir apenas alguns dados básicos. Relaxa que não vamos compartilhar com ninguém!
@@ -232,7 +233,7 @@
             <div id="form-view" class="hidden">
                 <div class="bg-[#F1D24B] text-stone-800 p-8 rounded-xl shadow-2xl text-center">
                     <!-- Ícone Original (Fundo Amarelo) - rounded-lg ATIVO -->
-                    <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-28 h-auto mx-auto mb-4 rounded-lg">
+                    <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-32 h-auto mx-auto mb-4 rounded-lg">
                     <h1 class="text-3xl font-bold text-stone-900">Teste de Nível</h1>
                     <p class="text-stone-700 mt-2 mb-6">Preencha seus dados para iniciar o teste e descobrir seu nível.</p>
                     <form id="lead-form" action="https://formspree.io/f/mblyowaq" method="POST" class="text-left space-y-4 max-w-md mx-auto">
@@ -269,9 +270,10 @@
             <div id="result-view" class="hidden">
                 <div class="bg-white p-8 rounded-xl shadow-2xl border border-stone-300 text-center">
                     <!-- Ícone PRETO (Quiz/Resultado - Fundo Branco) - rounded-lg REMOVIDO -->
-                    <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1759294967/SLAP_TIPO_PRETO_2_kismg9.png" alt="SLAP Logo Preto" class="w-28 h-auto mx-auto mb-6">
+                    <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1759294967/SLAP_TIPO_PRETO_2_kismg9.png" alt="SLAP Logo Preto" class="w-32 h-auto mx-auto mb-6">
                     <h2 class="text-2xl font-bold mb-2 text-stone-800">Teste Finalizado!</h2>
                     <p id="result-score" class="text-lg text-stone-600 mb-4"></p>
+                    <p id="result-time" class="text-xl font-semibold text-stone-700 mb-4"></p>
                     <div class="my-6">
                         <p id="result-level" class="text-3xl font-bold text-[#84C7DF] mb-2"></p>
                         <p id="result-message" class="text-stone-700"></p>
@@ -318,6 +320,11 @@
         let studentName = '';
         let studentEmail = '';
         let studentWhatsapp = '';
+
+        // --- Variáveis de Tempo ---
+        let quizStartTime;
+        let timerInterval;
+        let totalTimeElapsed = 0; // Armazena o tempo em segundos
 
         // --- DADOS DO QUIZ ---
         
@@ -509,7 +516,7 @@
             { type: 'multiple-choice', level: 'B1', question: "He ought ___ his investors before making the announcement.", options: ["consult", "to consult", "consulting", "consulted"], correctAnswer: 1, explanation: "O modal 'ought' é sempre seguido por 'to' + infinitivo ('to consult')." },
             { type: 'fill-in', level: 'B1', question: "I'm not keen ___ buying a virtual reality headset.", correctAnswer: ['on'], explanation: "A expressão 'keen on' significa gostar ou estar interessado em algo." },
             { type: 'multiple-choice', level: 'B1', question: "The interviewer asked me what ___ doing next year.", options: ["was I", "I was", "I am", "am I"], correctAnswer: 1, explanation: "Em perguntas indiretas (Reported Speech), a ordem da frase é sujeito + verbo ('I was')." },
-            { type: 'fill-in', level: 'B1', question: "The code, ___ was reviewed by the seniors, is ready for production.", correctAnswer: ['reviewed'], explanation: "Esta é uma cláusula relativa reduzida ('which was reviewed' é reduzido para 'reviewed')." },
+            { type: 'fill-in', level: 'B1', question: "The code, ___ was reviewed by the seniors, is ready for production.", correctAnswer: ['which'], explanation: "Esta é uma cláusula relativa reduzida ('which was reviewed')." },
             { type: 'multiple-choice', level: 'B1', question: "We decided ___ to the digital marketing course instead of the programming one.", options: ["go", "going", "to go", "went"], correctAnswer: 2, explanation: "O verbo 'decide' é seguido pelo infinitivo ('to go')." },
             { type: 'multiple-choice', level: 'B1', question: "The update hasn't been released ___.", options: ["ago", "since", "for", "yet"], correctAnswer: 3, explanation: "Usamos 'yet' em frases negativas ou interrogativas com o Present Perfect para indicar que algo não aconteceu até agora." },
             { type: 'fill-in', level: 'B1', question: "The influencer admitted ___ accepting payment for the fake review.", correctAnswer: ['having'], explanation: "O verbo 'admit' é seguido pelo gerúndio simples ('accepting') ou pelo gerúndio perfeito ('having accepted') para enfatizar o tempo." },
@@ -597,6 +604,35 @@
         let currentQuizQuestions = [];
         let currentQuestionIndex = 0;
         let score = 0;
+
+        // --- FUNÇÕES DE TEMPO ---
+        function formatTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const secs = seconds % 60;
+            return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        function updateTimerDisplay() {
+            const timeSinceStart = Math.floor((Date.now() - quizStartTime) / 1000);
+            totalTimeElapsed = timeSinceStart; // Atualiza o tempo total decorrido
+            const timeDisplay = quizView.querySelector('#timer-display');
+            if (timeDisplay) {
+                timeDisplay.textContent = formatTime(timeSinceStart);
+            }
+        }
+
+        function startTimer() {
+            quizStartTime = Date.now();
+            if (timerInterval) clearInterval(timerInterval);
+            timerInterval = setInterval(updateTimerDisplay, 1000);
+        }
+
+        function stopTimer() {
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
 
         // --- FUNÇÕES DE NAVEGAÇÃO ENTRE TELAS ---
         function hideAllViews() {
@@ -717,6 +753,7 @@
             quizView.classList.remove('hidden');
             resultView.classList.add('hidden');
             
+            startTimer(); // Inicia o cronómetro
             displayQuestion();
         }
 
@@ -764,12 +801,20 @@
                     <div id="quiz-content">
                          <div class="text-center mb-6">
                             <!-- Ícone para Fundo Branco (Quiz) - rounded-lg REMOVIDO -->
-                            <img src="${quizLogoUrl}" alt="SLAP Logo Preto" class="w-28 h-auto mx-auto mb-4">
+                            <img src="${quizLogoUrl}" alt="SLAP Logo Preto" class="w-32 h-auto mx-auto mb-4">
                          </div>
-                         <div class="mb-4">
-                            <p class="text-sm font-semibold text-stone-500 text-right mb-1">Questão ${currentQuestionIndex + 1} de ${currentQuizQuestions.length}</p>
-                            <div class="progress-bar-background">
-                                <div class="progress-bar-foreground" style="width: ${progressPercentage}%;"></div>
+                         <div class="flex justify-between items-end mb-4">
+                            <!-- Barra de Progresso e Contador de Questões -->
+                            <div>
+                                <p class="text-sm font-semibold text-stone-500 mb-1">Questão ${currentQuestionIndex + 1} de ${currentQuizQuestions.length}</p>
+                                <div class="progress-bar-background">
+                                    <div class="progress-bar-foreground" style="width: ${progressPercentage}%;"></div>
+                                </div>
+                            </div>
+                            <!-- Cronómetro -->
+                            <div class="text-right ml-4">
+                                <p class="text-sm font-semibold text-stone-500">Tempo Decorrido</p>
+                                <span id="timer-display" class="text-xl font-bold text-stone-700">00:00</span>
                             </div>
                          </div>
                         ${audioPlayerHtml}
@@ -873,12 +918,15 @@
         }
 
         function showResult() {
+            stopTimer(); // Pára o cronómetro
             quizView.classList.add('hidden');
             resultView.classList.remove('hidden');
 
             let level = '';
             let message = '';
             const total = currentQuizQuestions.length; // Deve ser 15
+            
+            const timeString = formatTime(totalTimeElapsed); // Formata o tempo
 
             // Nova Escala de Nível (baseada em 15 questões)
             if (score <= 3) { level = 'Iniciante (A1)'; message = 'Você está começando a aprender inglês. Foco nos fundamentos de gramática e vocabulário básico.'; }
@@ -891,6 +939,7 @@
             document.getElementById('result-score').textContent = `Você acertou ${score} de ${total} questões.`;
             document.getElementById('result-level').textContent = level;
             document.getElementById('result-message').textContent = message;
+            document.getElementById('result-time').textContent = `Tempo total: ${timeString}`; // Exibe o tempo
 
             // Envia todos os dados para o Formspree
             const submissionData = new FormData();
@@ -899,6 +948,7 @@
             submissionData.append('WhatsApp', studentWhatsapp);
             submissionData.append('Pontuação', `${score} de ${total}`);
             submissionData.append('Nível Estimado', level);
+            submissionData.append('Tempo Total', timeString); // Adiciona o tempo final
 
             fetch(leadForm.action, {
                 method: 'POST',
