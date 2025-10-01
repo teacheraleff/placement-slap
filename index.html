@@ -40,13 +40,16 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            /* Garante que ocupe a altura mínima para centralizar o conteúdo */
+            min-height: 100vh; 
             text-align: center;
             padding: 2rem;
             border-radius: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+            /* Limita a largura no desktop */
+            max-width: 42rem; /* md:max-w-2xl */
         }
-
+        
         /* Estilos do Quiz reutilizados do Hub */
         .quiz-option {
             display: block;
@@ -202,7 +205,8 @@
         <div class="w-full max-w-3xl lg:max-w-5xl mx-auto">
         
             <!-- SPLASH SCREEN 1: READY QUESTION (Default View on Load) -->
-            <div id="splash-1-view" class="dark-splash max-w-2xl mx-auto bg-stone-900 shadow-none">
+            <!-- Aplicando mx-auto e removendo o max-w-2xl para usar o max-w-3xl/5xl do pai -->
+            <div id="splash-1-view" class="dark-splash mx-auto bg-stone-900 shadow-none">
                 <!-- Ícone Original (Fundo Amarelo) - rounded-lg ATIVO -->
                 <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-32 h-auto mx-auto mb-6 sm:mb-8 rounded-lg">
                 <h1 class="text-4xl sm:text-5xl font-bold text-[#F1D24B] mb-6 sm:mb-8">
@@ -214,7 +218,8 @@
             </div>
 
             <!-- SPLASH SCREEN 2: DISCLAIMER -->
-            <div id="splash-2-view" class="dark-splash max-w-2xl mx-auto bg-stone-900 hidden shadow-none">
+            <!-- Aplicando mx-auto e removendo o max-w-2xl para usar o max-w-3xl/5xl do pai -->
+            <div id="splash-2-view" class="dark-splash mx-auto bg-stone-900 hidden shadow-none">
                  <!-- Ícone BRANCO (Fundo Escuro) - rounded-lg REMOVIDO -->
                  <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1759294959/SLAP_TIPO_BRANCO_uvynbr.png" alt="SLAP Logo Branco" class="w-32 h-auto mx-auto mb-4 sm:mb-6 opacity-80">
                 <p class="text-xl sm:text-2xl font-light leading-relaxed mb-6 sm:mb-8 max-w-lg">
@@ -230,8 +235,9 @@
             </div>
 
             <!-- Passo 1: Formulário de Inscrição (AGORA SIMPLIFICADO E REATIVADO) -->
-            <div id="form-view" class="hidden">
-                <div class="bg-[#F1D24B] text-stone-800 p-8 rounded-xl shadow-2xl text-center">
+            <div id="form-view" class="hidden flex justify-center w-full">
+                <!-- Adicionando max-w-xl para limitar a largura no desktop e melhorar o espaçamento -->
+                <div class="bg-[#F1D24B] text-stone-800 p-8 rounded-xl shadow-2xl text-center w-full md:max-w-xl">
                     <!-- Ícone Original (Fundo Amarelo) - rounded-lg ATIVO -->
                     <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-32 h-auto mx-auto mb-4 rounded-lg">
                     <h1 class="text-3xl font-bold text-stone-900">Teste de Nível</h1>
