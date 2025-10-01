@@ -306,45 +306,177 @@
         let studentEmail = '';
         let studentWhatsapp = '';
 
-        // --- DADOS DO QUIZ ---
+        // --- DADOS DO QUIZ (EXPANDIDOS PARA 100 QUESTÕES) ---
+        // Este array contém 100 perguntas, abrangendo os níveis A1 a C2
         const allQuestions = [
-            // A1 Level (2 questions)
+            // --- A1 Level (5 questions) ---
             { type: 'multiple-choice', level: 'A1', question: "Where ___ you from?", options: ["is", "are", "am", "be"], correctAnswer: 1, explanation: "Usamos 'are' com o pronome 'you' para fazer perguntas com o verbo 'to be'." },
             { type: 'fill-in', level: 'A1', question: "My birthday is ___ July.", correctAnswer: ['in'], explanation: "Usamos a preposição 'in' para meses do ano." },
+            { type: 'multiple-choice', level: 'A1', question: "This is my friend. ___ name is Sarah.", options: ["Her", "His", "It's", "Their"], correctAnswer: 0, explanation: "'Her' é o pronome possessivo feminino, usado para 'Sarah'." },
+            { type: 'fill-in', level: 'A1', question: "I like apples, but I don't like ___.", correctAnswer: ['oranges'], explanation: "O plural 'oranges' (laranjas) completa a lista de frutas que o falante não gosta." },
+            { type: 'multiple-choice', level: 'A1', question: "I need ___ help with my homework.", options: ["a", "an", "some", "any"], correctAnswer: 2, explanation: "Usamos 'some' em frases afirmativas com substantivos incontáveis como 'help'." },
             
-            // A2 Level (7 questions)
-            { type: 'multiple-choice', level: 'A2', question: "I ___ a great film yesterday.", options: ["see", "saw", "seen", "was seeing"], correctAnswer: 1, explanation: "'Saw' é o passado simples do verbo irregular 'to see'." },
+            // --- A2 Level (20 questions) ---
+            { type: 'multiple-choice', level: 'A2', question: "I ___ a great film yesterday.", options: ["see", "saw", "seen", "was seeing"], correctAnswer: 1, explanation: "'Saw' é o passado simples do verbo irregular 'to see', usado para ações concluídas no passado ('yesterday')." },
             { type: 'fill-in', level: 'A2', question: "This book is ___ interesting than the last one.", correctAnswer: ['more'], explanation: "Para adjetivos longos como 'interesting', usamos 'more' para formar o comparativo." },
-            { type: 'multiple-choice', level: 'A2', question: "I was watching TV when the phone ___.", options: ["rang", "ring", "was ringing", "rung"], correctAnswer: 0, explanation: "Usamos o Past Continuous para uma ação em progresso e o Simple Past ('rang') para a ação que a interrompeu." },
+            { type: 'multiple-choice', level: 'A2', question: "I was watching TV when the phone ___.", options: ["rang", "ring", "was ringing", "rung"], correctAnswer: 0, explanation: "Usamos o Past Continuous (was watching) para uma ação em progresso e o Simple Past ('rang') para a ação que a interrompeu." },
             { type: 'fill-in', level: 'A2', question: "I don't have ___ money.", correctAnswer: ['any'], explanation: "Usamos 'any' em frases negativas e interrogativas com substantivos incontáveis ou no plural." },
             { type: 'multiple-choice', level: 'A2', question: "The train is ___ than the bus.", options: ["faster", "fast", "more fast", "fastest"], correctAnswer: 0, explanation: "Para adjetivos curtos, adicionamos '-er' para formar o comparativo (fast -> faster)." },
             { type: 'fill-in', level: 'A2', question: "The meeting is ___ 10 AM.", correctAnswer: ['at'], explanation: "Usamos a preposição 'at' para horas específicas." },
             { type: 'multiple-choice', level: 'A2', question: "We ___ visit our grandparents next weekend.", options: ["are going to", "will", "go to", "goes to"], correctAnswer: 0, explanation: "'Going to' é usado para expressar planos futuros que já foram decididos." },
+            { type: 'multiple-choice', level: 'A2', question: "She ___ in Paris for five years, but now she lives in London.", options: ["lived", "has lived", "is living", "lives"], correctAnswer: 0, explanation: "O Simple Past 'lived' é usado para uma ação concluída no passado, reforçada por 'but now she lives'." },
+            { type: 'fill-in', level: 'A2', question: "We are going to the cinema ___ Friday night.", correctAnswer: ['on'], explanation: "Usamos a preposição 'on' para dias específicos da semana." },
+            { type: 'multiple-choice', level: 'A2', question: "He isn't as ___ as his brother.", options: ["tall", "taller", "tallest", "more tall"], correctAnswer: 0, explanation: "A estrutura comparativa de igualdade é 'as + adjetivo + as'." },
+            { type: 'fill-in', level: 'A2', question: "How ___ sugar do you want in your coffee?", correctAnswer: ['much'], explanation: "Usamos 'much' para substantivos incontáveis, como 'sugar'." },
+            { type: 'multiple-choice', level: 'A2', question: "They ___ going to visit us next week.", options: ["is", "are", "am", "be"], correctAnswer: 1, explanation: "O verbo 'to be' no presente com 'they' é 'are', formando o Future 'be going to'." },
+            { type: 'fill-in', level: 'A2', question: "I finished my work, ___ I went home.", correctAnswer: ['so'], explanation: "A conjunção 'so' é usada para expressar resultado ou consequência." },
+            { type: 'multiple-choice', level: 'A2', question: "I think it ___ rain tomorrow.", options: ["will", "is going to", "rains", "may"], correctAnswer: 0, explanation: "Usamos 'will' para previsões simples, geralmente após 'I think'." },
+            { type: 'fill-in', level: 'A2', question: "We have to wait ___ the bus.", correctAnswer: ['for'], explanation: "O verbo 'wait' é seguido pela preposição 'for' quando se espera por algo ou alguém." },
+            { type: 'multiple-choice', level: 'A2', question: "Can you ___ me a favor?", options: ["do", "make", "take", "give"], correctAnswer: 0, explanation: "A colocation correta é 'to do a favor'." },
+            { type: 'fill-in', level: 'A2', question: "When I was a child, I ___ play outside every day.", correctAnswer: ['used to'], explanation: "A estrutura 'used to' é usada para hábitos e estados no passado que não são mais verdadeiros." },
+            { type: 'multiple-choice', level: 'A2', question: "There are ___ books on the table.", options: ["a little", "much", "a lot of", "any"], correctAnswer: 2, explanation: "'A lot of' é usado com substantivos contáveis no plural ('books') em frases afirmativas." },
+            { type: 'fill-in', level: 'A2', question: "I don't like ___ (swimming).", correctAnswer: ['swimming'], explanation: "O verbo 'like' é frequentemente seguido por um gerúndio (-ing)." },
+            { type: 'multiple-choice', level: 'A2', question: "He ___ the windows when it started to pour.", options: ["was cleaning", "cleaned", "cleans", "has cleaned"], correctAnswer: 0, explanation: "O Past Continuous ('was cleaning') descreve a ação em curso interrompida pelo Simple Past." },
 
-            // B1 Level (3 questions)
-            { type: 'multiple-choice', level: 'B1', question: "If I had more time, I ___ travel more.", options: ["will", "can", "would", "am"], correctAnswer: 2, explanation: "Esta é uma 'Second Conditional sentence', usada para situações hipotéticas. A estrutura é 'If + Simple Past, ... would + verb'." },
+            // --- B1 Level (30 questions) ---
+            { type: 'multiple-choice', level: 'B1', question: "If I ___ you, I would take that job.", options: ["am", "were", "was", "have been"], correctAnswer: 1, explanation: "Em Second Conditional (situações hipotéticas), usamos 'were' para todas as pessoas após 'if I'." },
+            { type: 'fill-in', level: 'B1', question: "She said that she ___ leaving the next day.", correctAnswer: ['was'], explanation: "No Reported Speech, o Simple Present ('am leaving') se transforma em Past Continuous ('was leaving')." },
+            { type: 'multiple-choice', level: 'B1', question: "The letter ___ yesterday by the postman.", options: ["delivered", "was delivered", "has delivered", "is delivering"], correctAnswer: 1, explanation: "É a Voz Passiva no Simple Past ('was delivered'), usada quando o agente ('postman') é mencionado." },
             { type: 'fill-in', level: 'B1', question: "She's been living here ___ 2015.", correctAnswer: ['since'], explanation: "Usamos 'since' para indicar o ponto de início de uma ação que continua até o presente (Present Perfect)." },
-            { type: 'multiple-choice', level: 'B1', question: "You ___ wear a seatbelt in the car. It's the law.", options: ["should", "must", "can", "may"], correctAnswer: 1, explanation: "'Must' é usado para expressar uma forte obrigação ou necessidade." },
+            { type: 'multiple-choice', level: 'B1', question: "You ___ wear a seatbelt in the car. It's the law.", options: ["should", "must", "can", "may"], correctAnswer: 1, explanation: "'Must' é usado para expressar uma forte obrigação ou necessidade, frequentemente legal ou moral." },
+            { type: 'multiple-choice', level: 'B1', question: "___ the heavy traffic, we arrived on time.", options: ["Despite", "Although", "In spite of the", "Even though"], correctAnswer: 0, explanation: "'Despite' e 'In spite of' são seguidos por substantivo (traffic), mas 'In spite of' requer 'the'." },
+            { type: 'fill-in', level: 'B1', question: "We've lived in this city ___ ten years.", correctAnswer: ['for'], explanation: "Usamos 'for' com o Present Perfect para indicar a duração de um período de tempo." },
+            { type: 'multiple-choice', level: 'B1', question: "You should ___ a doctor about your cough.", options: ["see", "seeing", "saw", "to see"], correctAnswer: 0, explanation: "Após verbos modais como 'should', usamos a forma base (infinitivo sem 'to') do verbo principal." },
+            { type: 'fill-in', level: 'B1', question: "I need to ___ up early tomorrow.", correctAnswer: ['get'], explanation: "O phrasal verb 'get up' significa levantar-se da cama." },
+            { type: 'multiple-choice', level: 'B1', question: "He speaks two languages, ___ English and Spanish.", options: ["besides", "except", "apart", "moreover"], correctAnswer: 0, explanation: "'Besides' significa 'além de' ou 'em adição a', indicando que ele fala os dois idiomas listados." },
+            { type: 'fill-in', level: 'B1', question: "If it rains, we ___ stay home.", correctAnswer: ['will'], explanation: "Em First Conditional (situações reais ou prováveis), a cláusula principal usa 'will' + infinitivo." },
+            { type: 'multiple-choice', level: 'B1', question: "This car is ___ expensive than mine.", options: ["fewer", "less", "least", "little"], correctAnswer: 1, explanation: "'Less' é usado com substantivos incontáveis ou para formar o comparativo de inferioridade com adjetivos." },
+            { type: 'fill-in', level: 'B1', question: "She wishes she ___ taller.", correctAnswer: ['were'], explanation: "Em estruturas de desejo ('I wish'), usamos 'were' após o sujeito para expressar um desejo irreal sobre o presente (subjuntivo)." },
+            { type: 'multiple-choice', level: 'B1', question: "I'm looking forward ___ you again soon.", options: ["to see", "to seeing", "see", "seeing"], correctAnswer: 1, explanation: "A expressão 'look forward to' é seguida por um gerúndio (-ing)." },
+            { type: 'fill-in', level: 'B1', question: "He is used to ___ late.", correctAnswer: ['working'], explanation: "A expressão 'be used to' (estar habituado a) é seguida por um gerúndio (-ing)." },
+            { type: 'multiple-choice', level: 'B1', question: "They regret ___ her the truth.", options: ["not telling", "not to tell", "to not tell", "not tell"], correctAnswer: 0, explanation: "O verbo 'regret' seguido de gerúndio ('not telling') significa arrepender-se de algo que foi feito ou não no passado." },
+            { type: 'fill-in', level: 'B1', question: "The book, ___ was written in 1990, is a masterpiece.", correctAnswer: ['which'], explanation: "'Which' é usado para introduzir uma cláusula relativa não restritiva sobre coisas." },
+            { type: 'multiple-choice', level: 'B1', question: "He advised ___ the police.", options: ["contact", "to contact", "contacting", "to contacting"], correctAnswer: 2, explanation: "O verbo 'advise' é seguido por um gerúndio (-ing) quando não há um objeto explícito." },
+            { type: 'fill-in', level: 'B1', question: "I didn't recognize her ___ first.", correctAnswer: ['at'], explanation: "A expressão correta é 'at first' (a princípio)." },
+            { type: 'multiple-choice', level: 'B1', question: "They promised ___ us.", options: ["to help", "helping", "help", "for helping"], correctAnswer: 0, explanation: "O verbo 'promise' é seguido pelo infinitivo ('to help')." },
+            { type: 'fill-in', level: 'B1', question: "I wish I ___ more money.", correctAnswer: ['had'], explanation: "Usamos 'I wish + Simple Past' para expressar um desejo irreal sobre o presente." },
+            { type: 'multiple-choice', level: 'B1', question: "Do you mind ___ the window?", options: ["open", "opening", "to open", "opened"], correctAnswer: 1, explanation: "A expressão 'Do you mind' é sempre seguida por um gerúndio (-ing)." },
+            { type: 'fill-in', level: 'B1', question: "We ran out ___ milk this morning.", correctAnswer: ['of'], explanation: "O phrasal verb 'run out of' significa ficar sem algo." },
+            { type: 'multiple-choice', level: 'B1', question: "He ought ___ his parents.", options: ["visit", "to visit", "visiting", "visited"], correctAnswer: 1, explanation: "O modal 'ought' é sempre seguido por 'to' + infinitivo ('to visit')." },
+            { type: 'fill-in', level: 'B1', question: "I'm not keen ___ going out tonight.", correctAnswer: ['on'], explanation: "A expressão 'keen on' significa gostar ou estar interessado em algo." },
+            { type: 'multiple-choice', level: 'B1', question: "She asked me what ___ doing.", options: ["was I", "I was", "I am", "am I"], correctAnswer: 1, explanation: "Em perguntas indiretas (Reported Speech), a ordem da frase é sujeito + verbo ('I was')." },
+            { type: 'fill-in', level: 'B1', question: "The house ___ on the hill belongs to a famous writer.", correctAnswer: ['situated'], explanation: "Esta é uma cláusula relativa reduzida ('which is situated' é reduzido para 'situated')." },
+            { type: 'multiple-choice', level: 'B1', question: "We decided ___ to the beach instead of the mountains.", options: ["go", "going", "to go", "went"], correctAnswer: 2, explanation: "O verbo 'decide' é seguido pelo infinitivo ('to go')." },
+            { type: 'multiple-choice', level: 'B1', question: "I haven't eaten anything ___ this morning.", options: ["ago", "since", "for", "yet"], correctAnswer: 1, explanation: "Usamos 'since' para indicar o ponto inicial de um período até agora, no Present Perfect." },
+            { type: 'fill-in', level: 'B1', question: "She admitted ___ copied the answers.", correctAnswer: ['having'], explanation: "O verbo 'admit' é seguido pelo gerúndio simples ('copying') ou pelo gerúndio perfeito ('having copied') para enfatizar o tempo." },
 
-            // B2 Level (4 questions)
+            // --- B2 Level (25 questions) ---
             { type: 'fill-in', level: 'B2', question: "He is very good ___ playing the guitar.", correctAnswer: ['at'], explanation: "A expressão 'good at' é usada para indicar habilidade em algo." },
             { type: 'multiple-choice', level: 'B2', question: "By the time we arrived, the play had ___ started.", options: ["yet", "still", "just", "already"], correctAnswer: 3, explanation: "'Already' é usado com o Past Perfect para enfatizar que uma ação aconteceu antes de outra no passado." },
             { type: 'fill-in', level: 'B2', question: "Despite ___ hard, he didn't get the promotion.", correctAnswer: ['working'], explanation: "A preposição 'despite' é seguida por um substantivo ou um verbo no gerúndio (-ing)." },
             { type: 'multiple-choice', level: 'B2', question: "I wish I ___ that to her. She was very upset.", options: ["hadn't said", "didn't say", "wouldn't say", "haven't said"], correctAnswer: 0, explanation: "Usamos 'I wish + Past Perfect' para expressar arrependimento sobre uma ação passada." },
+            { type: 'multiple-choice', level: 'B2', question: "If I had known, I ___ the party.", options: ["would have come", "would come", "came", "had come"], correctAnswer: 0, explanation: "Esta é uma Third Conditional, a cláusula principal deve usar 'would have' + particípio passado." },
+            { type: 'fill-in', level: 'B2', question: "They must ___ lost, they are an hour late.", correctAnswer: ['have got'], explanation: "O Modal Perfect 'must have got' é usado para fazer uma dedução lógica sobre uma ação passada." },
+            { type: 'multiple-choice', level: 'B2', question: "He admitted ___ the money.", options: ["to steal", "stealing", "to stealing", "have stolen"], correctAnswer: 1, explanation: "O verbo 'admit' é seguido por um gerúndio ('stealing')." },
+            { type: 'fill-in', level: 'B2', question: "Not only did she sing, but she ___ played the piano.", correctAnswer: ['also'], explanation: "A estrutura 'Not only... but also...' é usada para ligar duas ideias de igual importância." },
+            { type: 'multiple-choice', level: 'B2', question: "He was late for the meeting, ___ was unusual.", options: ["which", "that", "what", "who"], correctAnswer: 0, explanation: "'Which' é usado para referir-se a toda a oração anterior (o fato de ele ter se atrasado)." },
+            { type: 'fill-in', level: 'B2', question: "The government implemented the new policy, ___ the protests.", correctAnswer: ['irrespective of'], explanation: "O conector 'irrespective of' significa 'independentemente de' e é uma locução preposicional formal." },
+            { type: 'multiple-choice', level: 'B2', question: "You should have ___ me before borrowing my car.", options: ["asked", "ask", "asking", "to ask"], correctAnswer: 0, explanation: "O Modal Perfect 'should have asked' é usado para criticar uma ação passada." },
+            { type: 'fill-in', level: 'B2', question: "I wish I ___ able to speak Japanese.", correctAnswer: ['were'], explanation: "Assim como no Second Conditional, 'I wish' frequentemente usa 'were' para expressar situações irreais." },
+            { type: 'multiple-choice', level: 'B2', question: "The committee is ___ to announce the winner tomorrow.", options: ["due", "bound", "likely", "certain"], correctAnswer: 0, explanation: "A expressão 'due to' é frequentemente usada para agendamentos ou eventos esperados." },
+            { type: 'fill-in', level: 'B2', question: "She found it difficult to ___ up with the workload.", correctAnswer: ['keep'], explanation: "O phrasal verb 'keep up with' significa acompanhar o ritmo." },
+            { type: 'multiple-choice', level: 'B2', question: "___ a result of the investigation, three people were arrested.", options: ["As", "For", "In", "With"], correctAnswer: 0, explanation: "A expressão idiomática correta para indicar causa/consequência é 'As a result of'." },
+            { type: 'fill-in', level: 'B2', question: "She seems to ___ completely recovered from her illness.", correctAnswer: ['have'], explanation: "O Perfect Infinitive 'to have recovered' é usado após 'seem' para indicar uma ação passada." },
+            { type: 'multiple-choice', level: 'B2', question: "I was made ___ the contract.", options: ["sign", "signing", "to sign", "signed"], correctAnswer: 0, explanation: "Na voz passiva, o verbo causativo 'make' perde o 'to' do infinitivo ('to sign' vira 'sign')." },
+            { type: 'fill-in', level: 'B2', question: "The lecture was so boring that I couldn't help ___ asleep.", correctAnswer: ['falling'], explanation: "A expressão 'can't help' é seguida por um gerúndio ('falling asleep')." },
+            { type: 'multiple-choice', level: 'B2', question: "They managed ___ the project despite the difficulties.", options: ["to complete", "completing", "complete", "in completing"], correctAnswer: 0, explanation: "O verbo 'manage' é seguido pelo infinitivo ('to complete')." },
+            { type: 'fill-in', level: 'B2', question: "She insisted ___ paying for the meal.", correctAnswer: ['on'], explanation: "O verbo 'insist' é seguido pela preposição 'on'." },
+            { type: 'multiple-choice', level: 'B2', question: "His decision was met with ___ opposition from the staff.", options: ["fierce", "sharp", "strong, keen"], correctAnswer: 0, explanation: "'Fierce' (feroz/forte) é a colocation mais natural para descrever oposição intensa." },
+            { type: 'fill-in', level: 'B2', question: "It's high time you ___ for a new job.", correctAnswer: ['looked'], explanation: "A expressão 'It's high time' é seguida pelo Simple Past para expressar que a ação deveria ter acontecido antes." },
+            { type: 'multiple-choice', level: 'B2', question: "I regret to ___ you that your application has been unsuccessful.", options: ["inform", "inform you", "tell", "telling"], correctAnswer: 0, explanation: "'Regret to inform' é uma frase formal padrão seguida por um objeto explícito, mas 'inform' já é suficiente aqui." },
+            { type: 'fill-in', level: 'B2', question: "The situation is fraught ___ danger.", correctAnswer: ['with'], explanation: "O adjetivo 'fraught' (cheio/carregado) é seguido pela preposição 'with'." },
+            { type: 'multiple-choice', level: 'B2', question: "___ the rain, we decided to go for a walk.", options: ["Despite of", "Even though", "In spite of", "Although"], correctAnswer: 2, explanation: "'In spite of' é a opção correta. 'Despite' não leva 'of'." },
             
-            // C1 Level (4 questions)
-            { type: 'fill-in', level: 'C1', question: "Not only ___ she beautiful, but she is also incredibly intelligent.", correctAnswer: ['is'], explanation: "Quando uma frase começa com uma expressão negativa como 'Not only', invertemos o sujeito e o verbo auxiliar ('is she')." },
+            // --- C1 Level (15 questions) ---
+            { type: 'fill-in', level: 'C1', question: "Not only ___ she beautiful, but she is also incredibly intelligent.", correctAnswer: ['is'], explanation: "Quando a frase começa com uma expressão negativa ('Not only'), o sujeito e o verbo auxiliar são invertidos ('is she')." },
             { type: 'multiple-choice', level: 'C1', question: "The company had to ___ a number of employees due to budget cuts.", options: ["lay off", "put off", "call off", "see off"], correctAnswer: 0, explanation: "O phrasal verb 'lay off' significa demitir funcionários, geralmente por razões econômicas." },
             { type: 'fill-in', level: 'C1', question: "The new policy was met with ___ criticism from the public.", correctAnswer: ['widespread'], explanation: "'Widespread' é uma colocation comum com 'criticism', significando crítica generalizada." },
             { type: 'multiple-choice', level: 'C1', question: "If you 'let the cat out of the bag', you...", options: ["buy a new pet", "feel very ill", "reveal a secret by mistake", "start a new hobby"], correctAnswer: 2, explanation: "'To let the cat out of the bag' é uma expressão idiomática que significa revelar um segredo acidentalmente." },
+            { type: 'multiple-choice', level: 'C1', question: "Hardly ___ arrived when the phone rang.", options: ["had I", "I had", "have I", "I have"], correctAnswer: 0, explanation: "Inversão avançada: 'Hardly' no início da frase exige a inversão do verbo auxiliar e do sujeito ('had I')." },
+            { type: 'fill-in', level: 'C1', question: "___ the fact that the company was struggling, they invested heavily.", correctAnswer: ['Given'], explanation: "'Given' como preposição significa 'considerando' e é usado em contextos formais." },
+            { type: 'multiple-choice', level: 'C1', question: "It was only when I checked my bank balance ___ I realized I was broke.", options: ["that", "when", "which", "then"], correctAnswer: 0, explanation: "Em Cleft Sentences (frases de ênfase) com 'It was only when...', usamos 'that' para introduzir a segunda parte." },
+            { type: 'fill-in', level: 'C1', question: "The company's future hinges ___ the success of this product.", correctAnswer: ['on'], explanation: "O phrasal verb 'hinge on' significa depender inteiramente de algo." },
+            { type: 'multiple-choice', level: 'C1', question: "The sheer ___ of the task was daunting.", options: ["magnitude", "plentiful", "greatly", "numerous"], correctAnswer: 0, explanation: "'Magnitude' é o substantivo correto, e a colocation 'sheer magnitude' é comum no nível C1." },
+            { type: 'fill-in', level: 'C1', question: "There is a crying ___ for more affordable housing.", correctAnswer: ['need'], explanation: "A colocation fixa 'a crying need' significa uma necessidade urgente ou óbvia." },
+            { type: 'multiple-choice', level: 'C1', question: "We must take into ___ the environmental impact.", options: ["account", "consideration", "thought", "mind"], correctAnswer: 0, explanation: "A colocation idiomática correta é 'to take into account' (levar em consideração)." },
+            { type: 'fill-in', level: 'C1', question: "The proposal was met with universal ___ (approbation).", correctAnswer: ['approbation'], explanation: "'Approabation' é sinônimo de aprovação, mas é uma palavra de nível C1." },
+            { type: 'multiple-choice', level: 'C1', question: "I would sooner ___ to the cinema than stay in.", options: ["go", "went", "to go", "going"], correctAnswer: 0, explanation: "A estrutura 'I would sooner/rather' (eu preferiria) é seguida pelo infinitivo sem 'to'." },
+            { type: 'fill-in', level: 'C1', question: "___ no circumstances should you open the safe.", correctAnswer: ['Under'], explanation: "A expressão de inversão avançada é 'Under no circumstances' (em hipótese alguma)." },
+            { type: 'multiple-choice', level: 'C1', question: "She is adept ___ solving complex problems.", options: ["with", "at", "for", "in"], correctAnswer: 1, explanation: "O adjetivo 'adept' (proficiente/hábil) é seguido pela preposição 'at'." },
 
-            // C2 Level (5 questions)
-            { type: 'fill-in', level: 'C2', question: "___ he known about the road closure, he would have taken a different route.", correctAnswer: ['had'], explanation: "Esta é uma forma de 'Third Conditional' com inversão, omitindo 'if'. A estrutura é 'Had + subject + past participle...'" },
-            { type: 'multiple-choice', level: 'C2', question: "His argument was full of holes and ___ inconsistencies.", options: ["glaring", "blatant", "flagrant", "all are correct"], correctAnswer: 3, explanation: "'Glaring', 'blatant' e 'flagrant' são sinônimos que podem ser usados para descrever inconsistências óbvias e chocantes." },
-            { type: 'fill-in', level: 'C2', question: "The artist's work is the ___ of minimalist design.", correctAnswer: ['epitome'], explanation: "'Epitome' significa o exemplo perfeito ou a personificação de algo." },
-            { type: 'multiple-choice', level: 'C2', question: "The politician's speech was an attempt to ___ the concerns of the voters.", options: ["assuage", "exacerbate", "aggravate", "compound"], correctAnswer: 0, explanation: "'Assuage' significa aliviar ou acalmar (preocupações, medos). As outras opções significam piorar." },
-            { type: 'fill-in', level: 'C2', question: "She has a(n) ___ for detail, which makes her an excellent editor.", correctAnswer: ['eye'], explanation: "A expressão 'to have an eye for something' significa ter uma habilidade natural para julgar ou notar algo." }
+            // --- C2 Level (5 questions) ---
+            { type: 'fill-in', level: 'C2', question: "___ he known about the road closure, he would have taken a different route.", correctAnswer: ['Had'], explanation: "Esta é uma forma de 'Third Conditional' com inversão, omitindo 'if'. A estrutura é 'Had + subject + past participle...' (Se ele soubesse...)." },
+            { type: 'multiple-choice', level: 'C2', question: "His argument was full of holes and ___ inconsistencies.", options: ["glaring", "blatant", "flagrant", "all are correct"], correctAnswer: 3, explanation: "'Glaring', 'blatant' e 'flagrant' são sinônimos de 'óbvio e chocante' e são colocations apropriadas para descrever inconsistências graves." },
+            { type: 'fill-in', level: 'C2', question: "The artist's work is the ___ of minimalist design.", correctAnswer: ['epitome'], explanation: "'Epitome' (o epítome) significa o exemplo perfeito ou a personificação de algo, um vocabulário formal de C2." },
+            { type: 'multiple-choice', level: 'C2', question: "The politician's speech was an attempt to ___ the concerns of the voters.", options: ["assuage", "exacerbate", "aggravate", "compound"], correctAnswer: 0, explanation: "'Assuage' significa aliviar ou acalmar (preocupações). As outras opções significam piorar." },
+            { type: 'fill-in', level: 'C2', question: "She has a(n) ___ for detail, which makes her an excellent editor.", correctAnswer: ['eye'], explanation: "A expressão idiomática 'to have an eye for something' significa ter uma habilidade natural para julgar ou notar algo." },
+            
+            // --- C1-C2 Gap Fillers (50 questions para chegar a 100) ---
+            // Nível B2-C1 (25 questions)
+            { type: 'multiple-choice', level: 'B2', question: "Hardly ever ___ such a breathtaking view.", options: ["I have seen", "did I see", "have I seen", "I saw"], correctAnswer: 2, explanation: "A expressão 'Hardly ever' exige inversão do auxiliar, e 'have seen' é a mais natural com 'ever' no sentido de 'nunca antes'." },
+            { type: 'fill-in', level: 'B2', question: "I finally got ___ to reading that classic novel.", correctAnswer: ['round'], explanation: "O phrasal verb 'get round to' significa finalmente encontrar tempo para fazer algo." },
+            { type: 'multiple-choice', level: 'B2', question: "I'd rather you ___ here.", options: ["didn't smoke", "don't smoke", "won't smoke", "not smoke"], correctAnswer: 0, explanation: "A estrutura 'I'd rather you' + Past Simple é usada para expressar preferência sobre a ação de outra pessoa." },
+            { type: 'fill-in', level: 'B2', question: "She took great ___ in her work.", correctAnswer: ['pride'], explanation: "A colocation é 'take pride in' (ter orgulho de)." },
+            { type: 'multiple-choice', level: 'B2', question: "The company's success is attributable ___ its strong leadership.", options: ["for", "to", "with", "at"], correctAnswer: 1, explanation: "O adjetivo 'attributable' (atribuível) é seguido pela preposição 'to'." },
+            { type: 'fill-in', level: 'B2', question: "He was on the ___ of signing the contract.", correctAnswer: ['verge'], explanation: "A expressão 'on the verge of' (à beira de) é usada para descrever o início iminente de algo." },
+            { type: 'multiple-choice', level: 'B2', question: "There is little hope of the lost documents ___ found.", options: ["being", "be", "to be", "to being"], correctAnswer: 0, explanation: "A estrutura correta é 'hope of' seguido de gerúndio, e 'being found' é o gerúndio na voz passiva." },
+            { type: 'fill-in', level: 'B2', question: "She's always getting into ___ with the manager.", correctAnswer: ['trouble'], explanation: "A colocation 'get into trouble' significa meter-se em problemas." },
+            { type: 'multiple-choice', level: 'B2', question: "___ did he realize the danger he was in.", options: ["Only later", "Later only", "Just later", "But later"], correctAnswer: 0, explanation: "Inversão avançada: 'Only later' no início da frase exige inversão do auxiliar ('did he realize')." },
+            { type: 'fill-in', level: 'B2', question: "I'm having my car ___ next week.", correctAnswer: ['repaired'], explanation: "Verbo causativo: 'have something done' (ter algo feito por alguém) requer o particípio passado." },
+            { type: 'multiple-choice', level: 'C1', question: "The article makes an ___ reference to the current political climate.", options: ["allusive", "elusive", "delusive", "illusive"], correctAnswer: 0, explanation: "'Allusive' (alusivo) significa fazer referência indireta a algo, vocabulário C1." },
+            { type: 'fill-in', level: 'C1', question: "The meeting was a complete waste of ___, as nothing was decided.", correctAnswer: ['time'], explanation: "A colocation é 'waste of time' (perda de tempo)." },
+            { type: 'multiple-choice', level: 'C1', question: "Were it ___ for your intervention, the deal would have collapsed.", options: ["not been", "not been for", "not for", "to not be"], correctAnswer: 2, explanation: "Estrutura de inversão da Third Conditional: 'Were it not for' substitui 'If it hadn't been for'." },
+            { type: 'fill-in', level: 'C1', question: "His behavior was ___ to the point of arrogance.", correctAnswer: ['overbearing'], explanation: "'Overbearing' (dominador/arrogante) é um adjetivo de nível C1 que descreve o comportamento de forma intensa." },
+            { type: 'multiple-choice', level: 'C1', question: "This report is full of ___ that obscure the main argument.", options: ["redundancies", "superfluous", "needless", "extras"], correctAnswer: 0, explanation: "'Redundancies' (redundâncias) é o substantivo que se encaixa no contexto de um argumento pouco claro." },
+            { type: 'fill-in', level: 'C1', question: "The old factory is ripe ___ development.", correctAnswer: ['for'], explanation: "A colocation 'ripe for' significa estar pronto ou em condições ideais para algo." },
+            { type: 'multiple-choice', level: 'C1', question: "What I don't appreciate is ___ at the last minute.", options: ["being told", "to be told", "to tell", "telling"], correctAnswer: 0, explanation: "A Voz Passiva no Gerúndio ('being told') é necessária para expressar a ação de ser informado." },
+            { type: 'fill-in', level: 'C1', question: "They went ahead with the plan, ___ a subsequent backlash.", correctAnswer: ['regardless of'], explanation: "'Regardless of' (independentemente de) é uma locução preposicional formal." },
+            { type: 'multiple-choice', level: 'C1', question: "He has a habit of ___ his words.", options: ["eating", "chewing", "munching", "biting"], correctAnswer: 0, explanation: "A expressão idiomática 'to eat one's words' significa admitir que estava errado." },
+            { type: 'fill-in', level: 'C1', question: "The negotiations reached a ___ with no side willing to compromise.", correctAnswer: ['stalemate'], explanation: "'Stalemate' (impasse) é um substantivo de nível C1 em contextos formais/políticos." },
+            { type: 'multiple-choice', level: 'C1', question: "The decision was taken ___ the board's wishes.", options: ["contrary to", "despite to", "against to", "in spite"], correctAnswer: 0, explanation: "'Contrary to' (contrário a) é uma locução preposicional formal." },
+            { type: 'fill-in', level: 'C1', question: "It is ___ knowledge that the company is struggling financially.", correctAnswer: ['common'], explanation: "A colocation 'common knowledge' significa conhecimento de domínio público." },
+            { type: 'multiple-choice', level: 'C1', question: "I am confident of ___ the target.", options: ["meeting", "to meet", "meet", "having meet"], correctAnswer: 0, explanation: "O adjetivo 'confident' é seguido pela preposição 'of' e, em seguida, por um gerúndio ('meeting')." },
+            { type: 'fill-in', level: 'C1', question: "She felt it was incumbent ___ her to resign.", correctAnswer: ['upon'], explanation: "O adjetivo 'incumbent' (incumbido/obrigatório) é seguido pela preposição 'upon' (ou 'on')." },
+            { type: 'multiple-choice', level: 'C1', question: "___ had the meeting started than the fire alarm went off.", options: ["No sooner", "Hardly", "Scarcely", "Not only"], correctAnswer: 0, explanation: "O conector de tempo 'No sooner' é usado com 'than' e exige inversão do auxiliar ('No sooner had... than')." },
+
+            // Nível C2 (25 questions adicionais)
+            { type: 'fill-in', level: 'C2', question: "The book is a nuanced exploration of the human ___ (condition).", correctAnswer: ['condition'], explanation: "'Condition' completa a colocation formal 'human condition' (condição humana)." },
+            { type: 'multiple-choice', level: 'C2', question: "The politician was widely regarded as a man of great ___.", options: ["integrity", "integral", "integrate", "integrated"], correctAnswer: 0, explanation: "'Integrity' (integridade) é o substantivo de nível C2 que se encaixa no contexto de caráter moral." },
+            { type: 'fill-in', level: 'C2', question: "Suffice ___ to say, the plan was a disaster.", correctAnswer: ['it'], explanation: "A expressão formal é 'Suffice it to say' (Basta dizer que...)." },
+            { type: 'multiple-choice', level: 'C2', question: "The scandal eventually brought the whole administration ___.", options: ["down", "over", "off", "up"], correctAnswer: 0, explanation: "O phrasal verb 'bring down' (derrubar) é usado em contextos políticos/formais." },
+            { type: 'fill-in', level: 'C2', question: "The report offers a ___ critique of the current healthcare system.", correctAnswer: ['scathing'], explanation: "'Scathing' (severa, cáustica) é um adjetivo de vocabulário C2 para descrever uma crítica muito dura." },
+            { type: 'multiple-choice', level: 'C2', question: "So remote ___ the village that supplies had to be dropped by air.", options: ["the village was", "was the village", "did the village was", "the village had"], correctAnswer: 1, explanation: "Inversão enfática: Frases iniciadas com 'So' + adjetivo exigem inversão do verbo ('was the village')." },
+            { type: 'fill-in', level: 'C2', question: "She is perfectly capable of doing the job, ___ that she is given the right resources.", correctAnswer: ['provided'], explanation: "O conector formal 'provided that' (desde que/se) é usado para introduzir uma condição." },
+            { type: 'multiple-choice', level: 'C2', question: "The document stipulated that the goods must be delivered ___ delay.", options: ["without", "no", "with no", "not any"], correctAnswer: 0, explanation: "A colocation formal é 'without delay' (sem demora)." },
+            { type: 'fill-in', level: 'C2', question: "The situation calls ___ immediate action.", correctAnswer: ['for'], explanation: "O phrasal verb formal 'call for' significa exigir ou tornar necessário." },
+            { type: 'multiple-choice', level: 'C2', question: "The politician resorted to ___ rhetoric to win the election.", options: ["inflammatory", "flame", "inflaming", "ignite"], correctAnswer: 0, explanation: "'Inflammatory rhetoric' (retórica inflamatória) é uma colocation C2 para linguagem que incita a raiva." },
+            { type: 'fill-in', level: 'C2', question: "We can only surmise ___ happened next.", correctAnswer: ['what'], explanation: "'Surmise' (conjecturar) é um verbo C2, e 'what happened' é a cláusula substantiva que serve como objeto." },
+            { type: 'multiple-choice', level: 'C2', question: "I was loath ___ to discuss the matter with him.", options: ["to enter", "to enter into", "enter into", "enter to"], correctAnswer: 1, explanation: "'Loath to' (relutante em) é seguido pelo infinitivo, e 'enter into' (iniciar uma discussão/acordo) é o phrasal verb correto." },
+            { type: 'fill-in', level: 'C2', question: "The pervasive ___ of bureaucracy hampered progress.", correctAnswer: ['nature'], explanation: "'Pervasive nature' (natureza generalizada) é uma colocation C2 que se encaixa bem no contexto formal." },
+            { type: 'multiple-choice', level: 'C2', question: "What ___ the lack of investment is the outdated technology.", options: ["compound", "compounds", "is compounding", "to compound"], correctAnswer: 1, explanation: "O verbo 'compound' no presente simples ('compounds') funciona como a forma correta para descrever o que agrava a situação." },
+            { type: 'fill-in', level: 'C2', question: "The jury were advised to discount the evidence, ___ its dubious origins.", correctAnswer: ['given'], explanation: "Aqui 'given' funciona como 'considering' (dadas) no sentido de concessão formal, C2." },
+            { type: 'multiple-choice', level: 'C2', question: "The whole affair has become a source of considerable ___.", options: ["acrimony", "acrimonious", "acrid", "acrimonies"], correctAnswer: 0, explanation: "'Acrimony' (acrimônia/aspereza) é o substantivo correto de nível C2." },
+            { type: 'fill-in', level: 'C2', question: "The government acted in ___ of the constitution.", correctAnswer: ['breach'], explanation: "A expressão formal é 'in breach of' (em violação de)." },
+            { type: 'multiple-choice', level: 'C2', question: "He's not above ___ a little dishonesty to get what he wants.", options: ["using", "to use", "use", "used to"], correctAnswer: 0, explanation: "A expressão idiomática 'not above using' significa 'não hesitaria em usar' (uso de gerúndio)." },
+            { type: 'fill-in', level: 'C2', question: "The project was carried ___ in a meticulous fashion.", correctAnswer: ['out'], explanation: "O phrasal verb 'carry out' (executar/realizar) é comum no nível C2 em contextos formais." },
+            { type: 'multiple-choice', level: 'C2', question: "Little ___ he know what the future held.", options: ["did", "was", "has", "can"], correctAnswer: 0, explanation: "Inversão avançada com 'Little' no início da frase, exigindo o auxiliar 'did' + infinitivo ('did he know')." },
+            { type: 'fill-in', level: 'C2', question: "It is incumbent ___ the authorities to investigate.", correctAnswer: ['on'], explanation: "O adjetivo 'incumbent' (incumbido/obrigatório) é seguido pela preposição 'on' ou 'upon'." },
+            { type: 'multiple-choice', level: 'C2', question: "She was blissfully ___ of the danger she was in.", options: ["oblivious", "unaware", "ignorant", "unconscious"], correctAnswer: 0, explanation: "'Blissfully oblivious of' é uma colocation de alto nível que significa 'desconhecer alegremente/inconscientemente'." },
+            { type: 'fill-in', level: 'C2', question: "The sheer ___ of the mountain range was awe-inspiring.", correctAnswer: ['scale'], explanation: "'Sheer scale' (escala pura/imensidão) é uma colocation para descrever magnitude física." },
+            { type: 'multiple-choice', level: 'C2', question: "He would have preferred ___ informed of the changes sooner.", options: ["to have been", "to be", "being", "to have"], correctAnswer: 0, explanation: "Perfect Infinitive na voz passiva ('to have been informed') é necessário após 'would have preferred'." },
+            { type: 'fill-in', level: 'C2', question: "The minister was quick to scotch ___ of a split in the party.", correctAnswer: ['rumours'], explanation: "O verbo 'scotch' (refutar) é colocation de 'rumours' (rumores) em contextos políticos, C2." }
         ];
+
 
         let currentQuizQuestions = [];
         let currentQuestionIndex = 0;
@@ -365,11 +497,50 @@
             startQuiz();
         });
 
+        /**
+         * Seleciona 15 questões aleatórias do pool de 100, garantindo a progressão A1 -> C2.
+         * Quota: 2 A1, 3 A2, 4 B1, 3 B2, 2 C1, 1 C2 (Total 15)
+         */
+        function selectAndOrderQuestions() {
+            const quota = { 'A1': 2, 'A2': 3, 'B1': 4, 'B2': 3, 'C1': 2, 'C2': 1 };
+            let selectedQuestions = [];
+            const questionsByLevel = allQuestions.reduce((acc, q) => {
+                if (!acc[q.level]) acc[q.level] = [];
+                acc[q.level].push(q);
+                return acc;
+            }, {});
+            
+            const shuffleArray = (array) => {
+                for (let i = array.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            };
+
+            const levelsOrder = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+            
+            for (const level of levelsOrder) {
+                const levelQuestions = questionsByLevel[level] || [];
+                const numToSelect = quota[level] || 0;
+                
+                // Embaralha as questões e pega o número necessário
+                shuffleArray(levelQuestions);
+                selectedQuestions.push(...levelQuestions.slice(0, numToSelect));
+            }
+
+            // Ordena o quiz final pela ordem dos níveis (A1, A2, B1, etc.)
+            selectedQuestions.sort((a, b) => {
+                return levelsOrder.indexOf(a.level) - levelsOrder.indexOf(b.level);
+            });
+
+            return selectedQuestions;
+        }
 
         function startQuiz() {
             currentQuestionIndex = 0;
             score = 0;
-            currentQuizQuestions = allQuestions;
+            // Usa a nova função para selecionar as 15 questões ordenadas
+            currentQuizQuestions = selectAndOrderQuestions(); 
             
             quizView.classList.remove('hidden');
             resultView.classList.add('hidden');
@@ -410,6 +581,7 @@
                             </div>
                          </div>
                         <h3 class="text-xl font-bold mb-6 text-stone-800">${questionData.question}</h3>
+                        <p class="text-sm text-stone-400 mb-3 font-medium text-center">[Nível ${questionData.level}]</p>
                         ${questionContentHtml}
                         <div id="feedback-area" class="min-h-[6rem] mt-4"></div>
                         <div id="quiz-nav" class="mt-6 text-right">
@@ -508,14 +680,15 @@
 
             let level = '';
             let message = '';
-            const total = currentQuizQuestions.length;
+            const total = currentQuizQuestions.length; // Deve ser 15
 
-            if (score <= 5) { level = 'Iniciante (A1)'; message = 'Você deu o primeiro passo! Continue estudando os fundamentos para construir uma base sólida.'; }
-            else if (score <= 10) { level = 'Básico (A2)'; message = 'Você já consegue se comunicar em situações simples. Ótimo progresso!'; }
-            else if (score <= 15) { level = 'Intermediário (B1)'; message = 'Muito bom! Você já tem independência em muitas situações.'; }
-            else if (score <= 20) { level = 'Intermediário Superior (B2)'; message = 'Excelente! Você demonstra um alto grau de precisão no inglês.'; }
-            else if (score <= 23) { level = 'Avançado (C1)'; message = 'Fantástico! Seu domínio do inglês é avançado, permitindo compreensão eficaz e espontânea.'; }
-            else { level = 'Proficiente (C2)'; message = 'Parabéns! Seu nível de inglês é avançado. Um resultado impressionante!'; }
+            // Nova Escala de Nível (baseada em 15 questões)
+            if (score <= 3) { level = 'Iniciante (A1)'; message = 'Você está começando a aprender inglês. Foco nos fundamentos de gramática e vocabulário básico.'; }
+            else if (score <= 6) { level = 'Básico (A2)'; message = 'Você já entende e se comunica em situações simples do dia a dia. Continue praticando o passado e futuro.'; }
+            else if (score <= 9) { level = 'Intermediário (B1)'; message = 'Muito bom! Você já tem independência em diversas situações. É hora de dominar o Present Perfect e as condicionais.'; }
+            else if (score <= 12) { level = 'Intermediário Superior (B2)'; message = 'Excelente! Seu inglês é preciso e você consegue lidar com textos complexos e conversas detalhadas.'; }
+            else if (score <= 14) { level = 'Avançado (C1)'; message = 'Fantástico! Seu domínio do inglês é avançado. Comece a explorar inversões e vocabulário idiomático.'; }
+            else { level = 'Proficiente (C2)'; message = 'Parabéns! Seu nível de inglês é o mais alto. Um resultado impressionante!'; }
             
             document.getElementById('result-score').textContent = `Você acertou ${score} de ${total} questões.`;
             document.getElementById('result-level').textContent = level;
