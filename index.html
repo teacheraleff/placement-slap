@@ -202,7 +202,8 @@
         
             <!-- SPLASH SCREEN 1: READY QUESTION (Default View on Load) -->
             <div id="splash-1-view" class="dark-splash max-w-2xl mx-auto bg-stone-900 shadow-none">
-                <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749543469/SLAP_FAVICON_AMARELO_coilvj.png" alt="SLAP Logo" class="w-24 h-auto mx-auto mb-8 rounded-lg opacity-80">
+                <!-- Ícone Original (Fundo Amarelo) - rounded-lg ATIVO -->
+                <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-32 h-auto mx-auto mb-8 rounded-lg">
                 <h1 class="text-4xl sm:text-5xl font-bold text-[#F1D24B] mb-10">
                     Pronto para descobrir o seu nível de inglês?
                 </h1>
@@ -213,7 +214,8 @@
 
             <!-- SPLASH SCREEN 2: DISCLAIMER -->
             <div id="splash-2-view" class="dark-splash max-w-2xl mx-auto bg-stone-900 hidden shadow-none">
-                 <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749543469/SLAP_FAVICON_AMARELO_coilvj.png" alt="SLAP Logo" class="w-20 h-auto mx-auto mb-6 rounded-lg opacity-60">
+                 <!-- Ícone BRANCO (Fundo Escuro) - rounded-lg REMOVIDO -->
+                 <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1759294959/SLAP_TIPO_BRANCO_uvynbr.png" alt="SLAP Logo Branco" class="w-28 h-auto mx-auto mb-6 opacity-80">
                 <p class="text-xl sm:text-2xl font-light leading-relaxed mb-10 max-w-lg">
                     Antes de mais nada, a gente do SLAP queria te dizer que este teste não é uma garantia do seu nível, hein? 👀 É apenas um teste rápido!
                     <br><br>
@@ -229,7 +231,8 @@
             <!-- Passo 1: Formulário de Inscrição (AGORA SIMPLIFICADO E REATIVADO) -->
             <div id="form-view" class="hidden">
                 <div class="bg-[#F1D24B] text-stone-800 p-8 rounded-xl shadow-2xl text-center">
-                    <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-24 h-auto mx-auto mb-4 rounded-lg">
+                    <!-- Ícone Original (Fundo Amarelo) - rounded-lg ATIVO -->
+                    <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-28 h-auto mx-auto mb-4 rounded-lg">
                     <h1 class="text-3xl font-bold text-stone-900">Teste de Nível</h1>
                     <p class="text-stone-700 mt-2 mb-6">Preencha seus dados para iniciar o teste e descobrir seu nível.</p>
                     <form id="lead-form" action="https://formspree.io/f/mblyowaq" method="POST" class="text-left space-y-4 max-w-md mx-auto">
@@ -265,7 +268,8 @@
             <!-- Passo 3: Resultado (ESCONDIDO) -->
             <div id="result-view" class="hidden">
                 <div class="bg-white p-8 rounded-xl shadow-2xl border border-stone-300 text-center">
-                    <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-24 h-auto mx-auto mb-6 rounded-lg">
+                    <!-- Ícone PRETO (Quiz/Resultado - Fundo Branco) - rounded-lg REMOVIDO -->
+                    <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1759294967/SLAP_TIPO_PRETO_2_kismg9.png" alt="SLAP Logo Preto" class="w-28 h-auto mx-auto mb-6">
                     <h2 class="text-2xl font-bold mb-2 text-stone-800">Teste Finalizado!</h2>
                     <p id="result-score" class="text-lg text-stone-600 mb-4"></p>
                     <div class="my-6">
@@ -722,6 +726,9 @@
                 const questionData = currentQuizQuestions[currentQuestionIndex];
                 const progressPercentage = ((currentQuestionIndex) / currentQuizQuestions.length) * 100;
                 
+                // Novo URL para o quiz (fundo branco)
+                const quizLogoUrl = "https://res.cloudinary.com/dqfi22uz0/image/upload/v1759294967/SLAP_TIPO_PRETO_2_kismg9.png"; 
+
                 let audioPlayerHtml = '';
                 
                 if (questionData.type === 'audio-mc') {
@@ -756,7 +763,8 @@
                 quizContainer.innerHTML = `
                     <div id="quiz-content">
                          <div class="text-center mb-6">
-                            <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-20 h-auto mx-auto mb-4 rounded-lg">
+                            <!-- Ícone para Fundo Branco (Quiz) - rounded-lg REMOVIDO -->
+                            <img src="${quizLogoUrl}" alt="SLAP Logo Preto" class="w-28 h-auto mx-auto mb-4">
                          </div>
                          <div class="mb-4">
                             <p class="text-sm font-semibold text-stone-500 text-right mb-1">Questão ${currentQuestionIndex + 1} de ${currentQuizQuestions.length}</p>
