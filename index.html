@@ -18,20 +18,29 @@
     <style>
         /* Aplicando a fonte padrão e cores do Hub Pedagógico */
         html, body {
+            /* Garante que o body não tem scroll horizontal indesejado e usa a altura total */
             height: 100%;
+            overflow-x: hidden;
         }
         body {
             font-family: 'DM Sans', sans-serif;
             display: flex;
             flex-direction: column;
-        }
-        #app-container {
-            flex: 1 0 auto;
-        }
-        main {
-            flex-shrink: 0;
+            background-color: #e7e5e4; /* stone-200 */
+            color: #44403c; /* stone-800 */
+            /* Controla o scroll vertical, só aparece se o conteúdo for maior que o viewport */
+            overflow-y: auto; 
         }
         
+        /* Otimiza a rolagem de ecrã para evitar barras duplas e scroll desnecessário */
+        main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh; /* Garante que o main centraliza o conteúdo verticalmente */
+            padding: 1.5rem 1rem; /* Padding base para as bordas visíveis no mobile */
+        }
+
         /* Estilos específicos para Ecrãs de Apresentação Escuros */
         .dark-splash {
             background-color: #1c1917; /* stone-900 */
@@ -40,16 +49,15 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            /* Garante que ocupe a altura mínima para centralizar o conteúdo */
-            min-height: 100vh; 
             text-align: center;
             padding: 2rem;
             border-radius: 0.75rem;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-            /* Limita a largura no desktop */
-            max-width: 42rem; /* md:max-w-2xl */
+            /* Garante que o conteúdo se ajuste à altura no mobile, removendo scroll indesejado */
+            width: 100%; 
+            height: auto;
         }
-        
+
         /* Estilos do Quiz reutilizados do Hub */
         .quiz-option {
             display: block;
@@ -200,13 +208,12 @@
 </head>
 <body class="bg-stone-200 text-stone-800">
 
-    <main id="app-container" class="flex items-center justify-center p-4 sm:p-6 min-h-screen">
-        <!-- Contêiner principal com largura adaptável para desktop -->
-        <div class="w-full max-w-3xl lg:max-w-5xl mx-auto">
+    <main id="app-container">
+        <!-- Contêiner principal para centralizar e limitar o conteúdo no desktop -->
+        <div class="w-full max-w-7xl mx-auto">
         
-            <!-- SPLASH SCREEN 1: READY QUESTION (Default View on Load) -->
-            <!-- Aplicando mx-auto e removendo o max-w-2xl para usar o max-w-3xl/5xl do pai -->
-            <div id="splash-1-view" class="dark-splash mx-auto bg-stone-900 shadow-none">
+            <!-- SPLASH SCREEN 1: READY QUESTION -->
+            <div id="splash-1-view" class="dark-splash mx-auto md:max-w-xl">
                 <!-- Ícone Original (Fundo Amarelo) - rounded-lg ATIVO -->
                 <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-32 h-auto mx-auto mb-6 sm:mb-8 rounded-lg">
                 <h1 class="text-4xl sm:text-5xl font-bold text-[#F1D24B] mb-6 sm:mb-8">
@@ -218,8 +225,7 @@
             </div>
 
             <!-- SPLASH SCREEN 2: DISCLAIMER -->
-            <!-- Aplicando mx-auto e removendo o max-w-2xl para usar o max-w-3xl/5xl do pai -->
-            <div id="splash-2-view" class="dark-splash mx-auto bg-stone-900 hidden shadow-none">
+            <div id="splash-2-view" class="dark-splash mx-auto md:max-w-xl hidden">
                  <!-- Ícone BRANCO (Fundo Escuro) - rounded-lg REMOVIDO -->
                  <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1759294959/SLAP_TIPO_BRANCO_uvynbr.png" alt="SLAP Logo Branco" class="w-32 h-auto mx-auto mb-4 sm:mb-6 opacity-80">
                 <p class="text-xl sm:text-2xl font-light leading-relaxed mb-6 sm:mb-8 max-w-lg">
@@ -234,15 +240,16 @@
                 </button>
             </div>
 
-            <!-- Passo 1: Formulário de Inscrição (AGORA SIMPLIFICADO E REATIVADO) -->
+            <!-- Passo 1: Formulário de Inscrição (Caixa Amarela) -->
             <div id="form-view" class="hidden flex justify-center w-full">
-                <!-- Adicionando max-w-xl para limitar a largura no desktop e melhorar o espaçamento -->
-                <div class="bg-[#F1D24B] text-stone-800 p-8 rounded-xl shadow-2xl text-center w-full md:max-w-xl">
+                <!-- Caixa Amarela, limitada a md:max-w-lg para inputs não esticarem demais -->
+                <div class="bg-[#F1D24B] text-stone-800 p-8 rounded-xl shadow-2xl text-center w-full md:max-w-lg">
                     <!-- Ícone Original (Fundo Amarelo) - rounded-lg ATIVO -->
                     <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-32 h-auto mx-auto mb-4 rounded-lg">
                     <h1 class="text-3xl font-bold text-stone-900">Teste de Nível</h1>
                     <p class="text-stone-700 mt-2 mb-6">Preencha seus dados para iniciar o teste e descobrir seu nível.</p>
-                    <form id="lead-form" action="https://formspree.io/f/mblyowaq" method="POST" class="text-left space-y-4 max-w-md mx-auto">
+                    <!-- Formspree action é configurado para receber os dados -->
+                    <form id="lead-form" action="https://formspree.io/f/mblyowaq" method="POST" class="text-left space-y-4 max-w-sm mx-auto">
                         <div>
                             <label for="name" class="font-semibold text-stone-800 block mb-1">Nome Completo</label>
                             <input type="text" id="name" name="name" class="w-full px-4 py-2 bg-yellow-50 border-2 border-transparent rounded-lg focus:outline-none focus:border-stone-800 text-stone-900 placeholder-stone-500" required>
@@ -265,15 +272,15 @@
                 </div>
             </div>
 
-            <!-- Passo 2: O Quiz (ESCONDIDO) -->
-            <div id="quiz-view" class="hidden">
+            <!-- Passo 2: O Quiz (Caixa Branca) -->
+            <div id="quiz-view" class="hidden w-full md:max-w-3xl mx-auto">
                  <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl border border-stone-300 w-full">
                     <!-- Conteúdo do quiz será injetado aqui pelo JS -->
                  </div>
             </div>
 
-            <!-- Passo 3: Resultado (ESCONDIDO) -->
-            <div id="result-view" class="hidden">
+            <!-- Passo 3: Resultado (Caixa Branca) -->
+            <div id="result-view" class="hidden w-full md:max-w-3xl mx-auto">
                 <div class="bg-white p-8 rounded-xl shadow-2xl border border-stone-300 text-center">
                     <!-- Ícone PRETO (Quiz/Resultado - Fundo Branco) - rounded-lg REMOVIDO -->
                     <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1759294967/SLAP_TIPO_PRETO_2_kismg9.png" alt="SLAP Logo Preto" class="w-32 h-auto mx-auto mb-6">
