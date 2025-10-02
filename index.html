@@ -21,16 +21,23 @@
             /* Garante que o body não tem scroll horizontal indesejado e usa a altura total */
             height: 100%;
             overflow-x: hidden;
+            transition: background-color 0.4s ease; /* Adiciona transição para a mudança de cor de fundo */
         }
         body {
             font-family: 'DM Sans', sans-serif;
             display: flex;
             flex-direction: column;
-            background-color: #e7e5e4; /* stone-200 */
-            color: #44403c; /* stone-800 */
+            /* Cor de fundo padrão (será sobrescrita pelo JS/classes) */
+            background-color: #1c1917; /* stone-900 (Fundo inicial escuro) */
+            color: #f5f5f4; /* stone-100 (Cor inicial do texto) */
             /* Controla o scroll vertical, só aparece se o conteúdo for maior que o viewport */
             overflow-y: auto; 
         }
+
+        /* Classes dinâmicas para mudar o fundo no JS */
+        .bg-dark { background-color: #1c1917; color: #f5f5f4; }
+        .bg-yellow { background-color: #F1D24B; color: #44403c; }
+        .bg-white-quiz { background-color: white; color: #44403c; }
         
         /* Otimiza a rolagem de ecrã para evitar barras duplas e scroll desnecessário */
         main {
@@ -39,23 +46,24 @@
             justify-content: center;
             min-height: 100vh; /* Garante que o main centraliza o conteúdo verticalmente */
             padding: 1.5rem 1rem; /* Padding base para as bordas visíveis no mobile */
+            width: 100%;
         }
 
-        /* Estilos específicos para Ecrãs de Apresentação Escuros */
+        /* Estilos base para todas as "telas" agora que o contêiner foi removido */
+        .screen-view {
+            width: 100%; 
+            max-width: 48rem; /* Limita a largura do conteúdo para desktop */
+            text-align: center;
+            padding: 1.5rem 0;
+            height: auto;
+        }
+
+        /* Estilos específicos para Ecrãs de Apresentação Escuros - agora sem fundo próprio */
         .dark-splash {
-            background-color: #1c1917; /* stone-900 */
-            color: #f5f5f4; /* stone-100 */
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 2rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
-            /* Garante que o conteúdo se ajuste à altura no mobile, removendo scroll indesejado */
-            width: 100%; 
-            height: auto;
         }
 
         /* Estilos do Quiz reutilizados do Hub */
@@ -206,14 +214,14 @@
 
     </style>
 </head>
-<body class="bg-stone-200 text-stone-800">
+<body class="bg-dark text-stone-100">
 
     <main id="app-container">
         <!-- Contêiner principal para centralizar e limitar o conteúdo no desktop -->
         <div class="w-full max-w-7xl mx-auto">
         
             <!-- SPLASH SCREEN 1: READY QUESTION -->
-            <div id="splash-1-view" class="dark-splash mx-auto md:max-w-xl">
+            <div id="splash-1-view" class="dark-splash screen-view mx-auto md:max-w-xl">
                 <!-- Ícone Original (Fundo Amarelo) - rounded-lg ATIVO -->
                 <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-32 h-auto mx-auto mb-6 sm:mb-8 rounded-lg">
                 <h1 class="text-4xl sm:text-5xl font-bold text-[#F1D24B] mb-6 sm:mb-8">
@@ -225,7 +233,7 @@
             </div>
 
             <!-- SPLASH SCREEN 2: DISCLAIMER -->
-            <div id="splash-2-view" class="dark-splash mx-auto md:max-w-xl hidden">
+            <div id="splash-2-view" class="dark-splash screen-view mx-auto md:max-w-xl hidden">
                  <!-- Ícone BRANCO (Fundo Escuro) - rounded-lg REMOVIDO -->
                  <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1759294959/SLAP_TIPO_BRANCO_uvynbr.png" alt="SLAP Logo Branco" class="w-32 h-auto mx-auto mb-4 sm:mb-6 opacity-80">
                 <p class="text-xl sm:text-2xl font-light leading-relaxed mb-6 sm:mb-8 max-w-lg">
@@ -240,10 +248,10 @@
                 </button>
             </div>
 
-            <!-- Passo 1: Formulário de Inscrição (Caixa Amarela) -->
-            <div id="form-view" class="hidden flex justify-center w-full">
-                <!-- Caixa Amarela, limitada a md:max-w-lg para inputs não esticarem demais -->
-                <div class="bg-[#F1D24B] text-stone-800 p-8 rounded-xl shadow-2xl text-center w-full md:max-w-lg">
+            <!-- Passo 1: Formulário de Inscrição (Fundo Amarelo) -->
+            <div id="form-view" class="screen-view hidden flex justify-center w-full">
+                <!-- Conteúdo do Formulário -->
+                <div class="text-stone-800 p-8 rounded-xl text-center w-full md:max-w-lg">
                     <!-- Ícone Original (Fundo Amarelo) - rounded-lg ATIVO -->
                     <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749349751/DBB440C2-684E-4DCF-9CD3-B2DDC18F1E53_3_vgocga.jpg" alt="SLAP Logo" class="w-32 h-auto mx-auto mb-4 rounded-lg">
                     <h1 class="text-3xl font-bold text-stone-900">Teste de Nível</h1>
@@ -272,16 +280,16 @@
                 </div>
             </div>
 
-            <!-- Passo 2: O Quiz (Caixa Branca) -->
-            <div id="quiz-view" class="hidden w-full md:max-w-3xl mx-auto">
-                 <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl border border-stone-300 w-full">
+            <!-- Passo 2: O Quiz (Fundo Branco) -->
+            <div id="quiz-view" class="screen-view hidden mx-auto md:max-w-3xl">
+                 <div class="p-6 sm:p-8 w-full">
                     <!-- Conteúdo do quiz será injetado aqui pelo JS -->
                  </div>
             </div>
 
-            <!-- Passo 3: Resultado (Caixa Branca) -->
-            <div id="result-view" class="hidden w-full md:max-w-3xl mx-auto">
-                <div class="bg-white p-8 rounded-xl shadow-2xl border border-stone-300 text-center">
+            <!-- Passo 3: Resultado (Fundo Branco) -->
+            <div id="result-view" class="screen-view hidden mx-auto md:max-w-3xl">
+                <div class="p-8 text-center w-full">
                     <!-- Ícone PRETO (Quiz/Resultado - Fundo Branco) - rounded-lg REMOVIDO -->
                     <img src="https://res.cloudinary.com/dqfi22uz0/image/upload/v1759294967/SLAP_TIPO_PRETO_2_kismg9.png" alt="SLAP Logo Preto" class="w-32 h-auto mx-auto mb-6">
                     <h2 class="text-2xl font-bold mb-2 text-stone-800">Teste Finalizado!</h2>
@@ -646,6 +654,20 @@
                 timerInterval = null;
             }
         }
+        
+        // Função para aplicar as classes de fundo ao body
+        function setBodyBackground(viewId) {
+            document.body.classList.remove('bg-dark', 'bg-yellow', 'bg-white-quiz', 'text-stone-100', 'text-stone-800');
+            
+            if (viewId === 'splash-1-view' || viewId === 'splash-2-view') {
+                document.body.classList.add('bg-dark', 'text-stone-100');
+            } else if (viewId === 'form-view') {
+                document.body.classList.add('bg-yellow', 'text-stone-800');
+            } else if (viewId === 'quiz-view' || viewId === 'result-view') {
+                document.body.classList.add('bg-white-quiz', 'text-stone-800');
+            }
+            // O fallback 'bg-stone-200' do CSS original é removido.
+        }
 
         // --- FUNÇÕES DE NAVEGAÇÃO ENTRE TELAS ---
         function hideAllViews() {
@@ -658,16 +680,19 @@
 
         function startSplash1() {
             hideAllViews();
+            setBodyBackground('splash-1-view');
             splash1View.classList.remove('hidden');
         }
 
         window.goToSplash2 = function() {
             hideAllViews();
+            setBodyBackground('splash-2-view');
             splash2View.classList.remove('hidden');
         }
         
         window.goToForm = function() {
             hideAllViews();
+            setBodyBackground('form-view');
             formView.classList.remove('hidden');
         }
         
@@ -682,6 +707,7 @@
 
             // Esconde o formulário e começa o quiz
             formView.classList.add('hidden');
+            setBodyBackground('quiz-view');
             quizView.classList.remove('hidden');
             startQuiz();
         });
@@ -771,7 +797,7 @@
         }
 
         function displayQuestion() {
-            const quizContainer = quizView.querySelector('.bg-white');
+            const quizContainer = quizView.querySelector('.p-6');
             if (currentQuestionIndex < currentQuizQuestions.length) {
                 const questionData = currentQuizQuestions[currentQuestionIndex];
                 const progressPercentage = ((currentQuestionIndex) / currentQuizQuestions.length) * 100;
@@ -933,6 +959,7 @@
         function showResult() {
             stopTimer(); // Pára o cronómetro
             quizView.classList.add('hidden');
+            setBodyBackground('result-view');
             resultView.classList.remove('hidden');
 
             let level = '';
