@@ -4,6 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SLAP | Teste de Nível de Inglês</title>
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-MQXP8Z4T');</script>
+    <!-- End Google Tag Manager -->
+    
     <!-- Favicon da SLAP -->
     <link rel="icon" type="image/png" href="https://res.cloudinary.com/dqfi22uz0/image/upload/v1749543469/SLAP_FAVICON_AMARELO_coilvj.png">
     
@@ -215,6 +223,10 @@
     </style>
 </head>
 <body class="bg-dark text-stone-100">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MQXP8Z4T"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <main id="app-container">
         <!-- Contêiner principal para centralizar e limitar o conteúdo no desktop -->
@@ -482,20 +494,21 @@
         // --- Demais Perguntas (Múltipla Escolha e Preenchimento) - EXCLUINDO AS DE ÁUDIO PARA EVITAR DUPLICAÇÃO ---
         const allQuestions = [
             // --- A1 Level (5 questions) ---
-            { type: 'multiple-choice', level: 'A1', question: "Where ___ you from?", options: ["is", "are", "am", "be"], correctAnswer: 1, explanation: "Usamos 'are' com o pronome 'you' para fazer perguntas com o verbo 'to be'." },
-            { type: 'fill-in', level: 'A1', question: "My flight is ___ March 15th.", correctAnswer: ['on'], explanation: "Usamos a preposição 'on' para datas específicas." },
-            { type: 'multiple-choice', level: 'A1', question: "Look at that new Tesla. ___ color is red.", options: ["Her", "His", "Its", "Their"], correctAnswer: 2, explanation: "'Its' é o pronome possessivo neutro, usado para objetos ('Tesla')." },
-            { type: 'fill-in', level: 'A1', question: "Hello! My name is David. What is ___ name?", correctAnswer: ['your'], explanation: "O pronome possessivo 'your' (seu/sua) é usado para perguntar o nome da pessoa com quem se está falando." },
-            { type: 'multiple-choice', level: 'A1', question: "We go to the park ___ the weekend.", options: ["at", "in", "on", "for"], correctAnswer: 0, explanation: "Nos EUA, usa-se 'on the weekend'; no Reino Unido, 'at the weekend'. Ambos são aceitos, mas 'at' é uma opção comum." },
-            
-            // --- A2 Level (19 questions) ---
+            { type: 'multiple-choice', level: 'A1', question: "Where _ you from?", options: ["is", "are", "am", "be"], correctAnswer: 1, explanation: "Usamos 'are' com o pronome 'you' para fazer perguntas com o verbo 'to be'." },
+            { type: 'fill-in', level: 'A1', question: "My flight is _ March 15th.", correctAnswer: ['on'], explanation: "Usamos a preposição 'on' para datas específicas." },
+            { type: 'multiple-choice', level: 'A1', question: "Look at that new Tesla. _ color is red.", options: ["Her", "His", "Its", "Their"], correctAnswer: 2, explanation: "'Its' é o pronome possessivo neutro, usado para objetos ('Tesla')." },
+            { type: 'fill-in', level: 'A1', question: "Hello! My name is David. What is _ name?", correctAnswer: ['your'], explanation: "O pronome possessivo 'your' (seu/sua) é usado para perguntar o nome da pessoa com quem se está falando." },
+            { type: 'multiple-choice', level: 'A1', question: "We go to the park _ the weekend.", options: ["at", "in", "on", "for"], correctAnswer: 2, explanation: "Nos EUA, usa-se 'on the weekend'; no Reino Unido, 'at the weekend'. Ambos são aceitos, mas 'at' é uma opção comum." },
+
+            // --- A2 Level (20 questions) ---
             { type: 'multiple-choice', level: 'A2', question: "I love that new Netflix series. I ___ the first episode last night.", options: ["watch", "watched", "watching", "have watched"], correctAnswer: 1, explanation: "'Watched' é o passado simples, usado para uma ação concluída no passado ('last night')." },
             { type: 'fill-in', level: 'A2', question: "The weather in Rio is ___ better than the weather in London.", correctAnswer: ['much'], explanation: "Usamos 'much' para intensificar comparativos (ex: 'much better', 'much faster')." },
-            { type: 'multiple-choice', level: 'A2', question: "While I was scrolling on Instagram, my mom ___ me a message.", options: ["send", "sended", "sent", "sented"], correctAnswer: 2, explanation: "O Simple Past do verbo irregular 'to send' é 'sent', usado para a ação que interrompeu o 'scrolling'." },
+            { type: 'multiple-choice', level: 'A2', question: "While I was scrolling on Instagram, my mom ___ me a message.", options: ["send", "sended", "sent", "was sending"], correctAnswer: 2, explanation: "O Simple Past do verbo irregular 'to send' é 'sent', usado para a ação que interrompeu o 'scrolling'." },
             { type: 'fill-in', level: 'A2', question: "I need to buy a new charger. I don't have ___ battery left.", correctAnswer: ['any'], explanation: "Usamos 'any' em frases negativas com substantivos incontáveis ou no plural." },
             { type: 'multiple-choice', level: 'A2', question: "The iPhone 15 is ___ expensive than the previous model.", options: ["most", "more", "much", "more much"], correctAnswer: 1, explanation: "Usamos 'more' para formar o comparativo com adjetivos longos." },
             { type: 'fill-in', level: 'A2', question: "The team meeting is scheduled ___ 2 PM on Tuesday.", correctAnswer: ['at'], explanation: "Usamos a preposição 'at' para horas específicas." },
             { type: 'multiple-choice', level: 'A2', question: "Tomorrow is my last day. I ___ travel next week.", options: ["am going to", "will", "go to", "goes to"], correctAnswer: 0, explanation: "'Am going to' é usado para expressar planos futuros que já foram decididos (intenção)." },
+            { type: 'multiple-choice', level: 'A2', question: "Beyoncé ___ performing since she was a teenager.", options: ["perform", "has performed", "is performing", "performed"], correctAnswer: 1, explanation: "O Present Perfect ('has performed') é usado para ações que começaram no passado e continuam sendo verdadeiras no presente (ela ainda performa)." },
             { type: 'fill-in', level: 'A2', question: "We are meeting our friends ___ Saturday evening.", correctAnswer: ['on'], explanation: "Usamos a preposição 'on' para dias específicos da semana." },
             { type: 'multiple-choice', level: 'A2', question: "The new app isn't as ___ as the old one.", options: ["fast", "faster", "fastest", "more fast"], correctAnswer: 0, explanation: "A estrutura comparativa de igualdade é 'as + adjetivo na forma base + as'." },
             { type: 'fill-in', level: 'A2', question: "How ___ time do you spend on TikTok every day?", correctAnswer: ['much'], explanation: "Usamos 'much' para substantivos incontáveis, como 'time'." },
@@ -507,7 +520,7 @@
             { type: 'fill-in', level: 'A2', question: "When I had more free time, I ___ go hiking every weekend.", correctAnswer: ['used to'], explanation: "A estrutura 'used to' é usada para hábitos e estados no passado que não são mais verdadeiros." },
             { type: 'multiple-choice', level: 'A2', question: "There are ___ people waiting in line for the concert tickets.", options: ["a little", "much", "a lot of", "any"], correctAnswer: 2, explanation: "'A lot of' é usado com substantivos contáveis no plural ('people') em frases afirmativas." },
             { type: 'fill-in', level: 'A2', question: "She enjoys ___ new languages in her free time.", correctAnswer: ['learning'], explanation: "O verbo 'enjoy' é seguido por um gerúndio (-ing)." },
-            { type: 'multiple-choice', level: 'A2', question: "He ___ his phone when the boss walked in.", options: ["was using", "used", "uses", "using"], correctAnswer: 0, explanation: "O Past Continuous ('was using') descreve a ação em curso interrompida pelo Simple Past." },
+            { type: 'multiple-choice', level: 'A2', question: "He ___ the meeting minutes when the boss walked in.", options: ["was writing", "wrote", "writes", "has written"], correctAnswer: 0, explanation: "O Past Continuous ('was writing') descreve a ação em curso interrompida pelo Simple Past." },
 
             // --- B1 Level (30 questions) ---
             { type: 'multiple-choice', level: 'B1', question: "If I ___ the founder of this startup, I would hire more developers.", options: ["am", "were", "was", "have been"], correctAnswer: 1, explanation: "Em Second Conditional (situações hipotéticas ou irreais), usamos 'were' para todas as pessoas após 'if I' ('If I were you')." },
@@ -539,7 +552,7 @@
             { type: 'fill-in', level: 'B1', question: "The code, ___ was reviewed by the seniors, is ready for production.", correctAnswer: ['which'], explanation: "Esta é uma cláusula relativa reduzida ('which was reviewed')." },
             { type: 'multiple-choice', level: 'B1', question: "We decided ___ to the digital marketing course instead of the programming one.", options: ["go", "going", "to go", "went"], correctAnswer: 2, explanation: "O verbo 'decide' é seguido pelo infinitivo ('to go')." },
             { type: 'multiple-choice', level: 'B1', question: "The update hasn't been released ___.", options: ["ago", "since", "for", "yet"], correctAnswer: 3, explanation: "Usamos 'yet' em frases negativas ou interrogativas com o Present Perfect para indicar que algo não aconteceu até agora." },
-            { type: 'fill-in', level: 'B1', question: "The influencer admitted ___ accepted payment for the fake review.", correctAnswer: ['having'], explanation: "O verbo 'admit' é seguido pelo gerúndio simples ('accepting') ou pelo gerúndio perfeito ('having accepted') para enfatizar o tempo." },
+            { type: 'fill-in', level: 'B1', question: "The influencer admitted ___ accepting payment for the fake review.", correctAnswer: ['having'], explanation: "O verbo 'admit' é seguido pelo gerúndio simples ('accepting') ou pelo gerúndio perfeito ('having accepted') para enfatizar o tempo." },
 
             // --- B2 Level (25 questions) ---
             { type: 'fill-in', level: 'B2', question: "He is very adept ___ social media management.", correctAnswer: ['at'], explanation: "O adjetivo 'adept' (habilidoso) é seguido pela preposição 'at'." },
@@ -580,7 +593,7 @@
             { type: 'multiple-choice', level: 'C1', question: "The sheer ___ of the project documentation was daunting.", options: ["magnitude", "plentiful", "greatly", "numerous"], correctAnswer: 0, explanation: "'Magnitude' é o substantivo correto, e a colocation 'sheer magnitude' é comum no nível C1." },
             { type: 'fill-in', level: 'C1', question: "There is a crying ___ for new regulatory standards.", correctAnswer: ['need'], explanation: "A colocation fixa 'a crying need' significa uma necessidade urgente ou óbvia." },
             { type: 'multiple-choice', level: 'C1', question: "We must take into ___ the ethical implications of the AI.", options: ["account", "consideration", "thought", "mind"], correctAnswer: 0, explanation: "A colocation idiomática correta é 'to take into account' (levar em consideração)." },
-            { type: 'fill-in', level: 'C1', question: "The design received universal ___ from critics.", correctAnswer: ['approbation'], explanation: "'Approabation' é sinônimo de aprovação, mas é uma palavra de nível C1." },
+            { type: 'fill-in', level: 'C1', question: "The design received universal ___ (approbation) from critics.", correctAnswer: ['approbation'], explanation: "'Approabation' é sinônimo de aprovação, mas é uma palavra de nível C1." },
             { type: 'multiple-choice', level: 'C1', question: "I would sooner ___ the beta version than wait for the full release.", options: ["test", "tested", "to test", "testing"], correctAnswer: 0, explanation: "A estrutura 'I would sooner/rather' (eu preferiria) é seguida pelo infinitivo sem 'to'." },
             { type: 'fill-in', level: 'C1', question: "___ no circumstances should the backdoor password be shared.", correctAnswer: ['Under'], explanation: "A expressão de inversão avançada é 'Under no circumstances' (em hipótese alguma)." },
             { type: 'multiple-choice', level: 'C1', question: "She is adept ___ debugging legacy code.", options: ["with", "at", "for", "in"], correctAnswer: 1, explanation: "O adjetivo 'adept' (proficiente/hábil) é seguido pela preposição 'at'." },
@@ -593,12 +606,12 @@
             { type: 'fill-in', level: 'C2', question: "The editor has a keen ___ for stylistic errors.", correctAnswer: ['eye'], explanation: "A expressão idiomática 'to have an eye for something' significa ter uma habilidade natural para julgar ou notar algo." },
             
             // --- C1-C2 Gap Fillers (25 questions) ---
-            { type: 'fill-in', level: 'C2', question: "The series is a nuanced exploration of the human ___ .", correctAnswer: ['condition'], explanation: "'Condition' completa a colocation formal 'human condition' (condição humana)." },
+            { type: 'fill-in', level: 'C2', question: "The series is a nuanced exploration of the human ___ (condition).", correctAnswer: ['condition'], explanation: "'Condition' completa a colocation formal 'human condition' (condição humana)." },
             { type: 'multiple-choice', level: 'C2', question: "The scientist was widely regarded as a woman of great ___.", options: ["integrity", "integral", "integrate", "integrated"], correctAnswer: 0, explanation: "'Integrity' (integridade) é o substantivo de nível C2 que se encaixa no contexto de caráter moral." },
             { type: 'fill-in', level: 'C2', question: "Suffice ___ to say, the pilot project was terminated.", correctAnswer: ['it'], explanation: "A expressão formal é 'Suffice it to say' (Basta dizer que...)." },
             { type: 'multiple-choice', level: 'C2', question: "The scandal eventually brought the whole department ___.", options: ["down", "over", "off", "up"], correctAnswer: 0, explanation: "O phrasal verb 'bring down' (derrubar) é usado em contextos políticos/formais." },
             { type: 'fill-in', level: 'C2', question: "The review offered a ___ critique of the latest smartphone model.", correctAnswer: ['scathing'], explanation: "'Scathing' (severa, cáustica) é um adjetivo de vocabulário C2 para descrever uma crítica muito dura." },
-            { type: 'multiple-choice', level: 'C2', question: "So complex ___ that only three engineers understood it.", options: ["the code was", "was the code", "did the code was", "the code had"], correctAnswer: 1, explanation: "Inversão enfática: Frases iniciadas com 'So' + adjetivo exigem inversão do verbo ('was the code')." },
+            { type: 'multiple-choice', level: 'C2', question: "So complex ___ the code that only three engineers understood it.", options: ["the code was", "was the code", "did the code was", "the code had"], correctAnswer: 1, explanation: "Inversão enfática: Frases iniciadas com 'So' + adjetivo exigem inversão do verbo ('was the code')." },
             { type: 'fill-in', level: 'C2', question: "The app is scalable, ___ that the server capacity is maintained.", correctAnswer: ['provided'], explanation: "O conector formal 'provided that' (desde que/se) é usado para introduzir uma condição." },
             { type: 'multiple-choice', level: 'C2', question: "The contract stipulated that the final payment must be made ___ delay.", options: ["without", "no", "with no", "not any"], correctAnswer: 0, explanation: "A colocation formal é 'without delay' (sem demora)." },
             { type: 'fill-in', level: 'C2', question: "The zero-day vulnerability calls ___ immediate mitigation.", correctAnswer: ['for'], explanation: "O phrasal verb formal 'call for' significa exigir ou tornar necessário." },
@@ -615,7 +628,7 @@
             { type: 'multiple-choice', level: 'C2', question: "Little ___ the competitor know about our new product strategy.", options: ["did", "was", "has", "can"], correctAnswer: 0, explanation: "Inversão avançada com 'Little' no início da frase, exigindo o auxiliar 'did' + infinitivo ('did he know')." },
             { type: 'fill-in', level: 'C2', question: "It is incumbent ___ the Chief Security Officer to issue a public statement.", correctAnswer: ['on'], explanation: "O adjetivo 'incumbent' (incumbido/obrigatório) é seguido pela preposição 'on' ou 'upon'." },
             { type: 'multiple-choice', level: 'C2', question: "She was blissfully ___ of the security vulnerabilities in the old server.", options: ["oblivious", "unaware", "ignorant", "unconscious"], correctAnswer: 0, explanation: "'Blissfully oblivious of' é uma colocation de alto nível que significa 'desconhecer alegremente/inconscientemente'." },
-            { type: 'fill-in', level: 'C2', question: "The sheer ___ of the required computational power was staggering.", correctAnswer: ['scale'], explanation: "'Sheer scale' (escala pura/imensidão) é uma colocation para descrever magnitude física." },
+            { type: 'fill-in', level: 'C2', question: "The sheer ___ of the required computational power was staggering.", options: ["scale", "magnitude", "size", "volume"], correctAnswer: 0, explanation: "'Sheer scale' (escala pura/imensidão) é uma colocation para descrever magnitude física." },
             { type: 'multiple-choice', level: 'C2', question: "He would have preferred ___ involved in the decision-making process sooner.", options: ["to have been", "to be", "being", "to have"], correctAnswer: 0, explanation: "Perfect Infinitive na voz passiva ('to have been informed') é necessário após 'would have preferred'." },
             { type: 'fill-in', level: 'C2', question: "The management was quick to scotch ___ of a planned mass redundancy.", correctAnswer: ['rumours'], explanation: "O verbo 'scotch' (refutar) é colocation de 'rumours' (rumores) em contextos políticos/empresariais, C2." }
         ];
